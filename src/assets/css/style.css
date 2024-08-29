@@ -793,15 +793,16 @@ Dark: 333333;
  =           Section - Sidebar            =
  ========================================*/
 
- @media (min-width: 992px) {
-	 .sidebar {
-		 padding-top: 2rem;
-		 padding-bottom: 2rem;
-		 padding-right: 2rem;
-		 position: relative;
-		 background-color: #f8f6f6;
-		 color: #333;
-	 }
+@media (min-width: 992px) {
+  .sidebar {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+    position: relative;
+    background-color: #f8f6f6;
+    color: #333;
+  }
 
 	 .sidebar:before {
 		 content: '';
@@ -810,7 +811,7 @@ Dark: 333333;
 		 left: -1000%;
 		 top: 0;
 		 bottom: 0;
-		 width: 1000%;
+		 /* width: 1000%; */
 		 background-color: #f8f6f6;
 	 }
  }
@@ -853,10 +854,10 @@ Dark: 333333;
 	 padding-bottom: .35rem;
  }
 
- .scroll-container {
-	 height: 180px;
-	 overflow: hidden;
- }
+.scroll-container {
+  height: auto;
+  overflow: hidden;
+}
 
  .mCSB_inside>.mCSB_container {
 	 margin-right: 15px;
@@ -866,11 +867,12 @@ Dark: 333333;
 	 background-color: rgba(0, 0, 0, 0.15);
  }
 
- .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,
- .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
- .mCSB_scrollTools_onDrag .mCSB_dragger .mCSB_dragger_bar {
-	 background-color: rgba(0, 0, 0, 0.5);
- }
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,
+.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
+.mCSB_scrollTools_onDrag .mCSB_dragger .mCSB_dragger_bar {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  width: 0px;
+}
 
  .filter-nav-toggle,
  .sorting-nav-toggle {

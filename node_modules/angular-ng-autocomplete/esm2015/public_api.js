@@ -1,0 +1,13 @@
+/**
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/*
+ * Public API Surface of autocomplete-lib
+ */
+export { AutocompleteLibComponent } from './lib/autocomplete-lib.component';
+export { AutocompleteLibModule } from './lib/autocomplete-lib.module';
+export { AutocompleteComponent } from './lib/autocomplete/autocomplete.component';
+export { HighlightPipe } from './lib/autocomplete/highlight.pipe';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2FuZ3VsYXItbmctYXV0b2NvbXBsZXRlLyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUlBLHlDQUFjLGtDQUFrQyxDQUFDO0FBQ2pELHNDQUFjLCtCQUErQixDQUFDO0FBQzlDLHNDQUFjLDJDQUEyQyxDQUFDO0FBQzFELDhCQUFjLG1DQUFtQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIFB1YmxpYyBBUEkgU3VyZmFjZSBvZiBhdXRvY29tcGxldGUtbGliXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0b2NvbXBsZXRlLWxpYi5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0b2NvbXBsZXRlLWxpYi5tb2R1bGUnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0b2NvbXBsZXRlL2F1dG9jb21wbGV0ZS5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0b2NvbXBsZXRlL2hpZ2hsaWdodC5waXBlJztcblxuIl19

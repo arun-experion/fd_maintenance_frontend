@@ -792,15 +792,16 @@ Dark: 333333;
  =           Section - Sidebar            =
  ========================================*/
 
- @media (min-width: 992px) {
-	 .sidebar {
-		 padding-top: 2rem;
-		 padding-bottom: 2rem;
-		 padding-right: 2rem;
-		 position: relative;
-		 background-color: #f8f6f6;
-		 color: #333;
-	 }
+@media (min-width: 992px) {
+  .sidebar {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    position: relative;
+    background-color: #f8f6f6;
+    color: #333;
+  }
 
 	 .sidebar:before {
 		 content: '';

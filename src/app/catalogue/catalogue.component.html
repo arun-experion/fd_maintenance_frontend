@@ -41,19 +41,31 @@
             </div>
             <div class="widget">
               <div
-                class="btn-toogle"
-                data-toggle="collapse"
+                [ngClass]="{
+                  'btn-toogle': filters(categoryData).length > 0,
+                  'btn-toogle-no-items': filters(categoryData).length === 0
+                }"
+                [attr.data-toggle]="
+                  filters(categoryData).length > 0 ? 'collapse' : null
+                "
                 data-target="#collapseCategory"
               >
                 Category<i class="flaticon-down-arrow"></i>
               </div>
-              <div class="collapse show" id="collapseCategory">
+              <div
+                class="collapse"
+                [ngClass]="{ show: filters(categoryData).length > 0 }"
+                id="collapseCategory"
+              >
                 <div class="collapse-body">
                   <div
                     class="scroll-container mCustomScrollbar overflow-auto"
                     data-mcs-theme="dark"
                   >
-                    <ul class="list-unstyled">
+                    <ul
+                      class="list-unstyled"
+                      *ngIf="filters(categoryData).length > 0"
+                    >
                       <li *ngFor="let category of filters(categoryData)">
                         <a
                           [ngClass]="{
@@ -70,15 +82,25 @@
                 </div>
               </div>
             </div>
+
             <div class="widget">
               <div
-                class="btn-toogle"
-                data-toggle="collapse"
+                [ngClass]="{
+                  'btn-toogle': filters(positionData).length > 0,
+                  'btn-toogle-no-items': filters(positionData).length === 0
+                }"
+                [attr.data-toggle]="
+                  filters(positionData).length > 0 ? 'collapse' : null
+                "
                 data-target="#collapseFitting"
               >
                 Fitting position<i class="flaticon-down-arrow"></i>
               </div>
-              <div class="collapse show" id="collapseFitting">
+              <div
+                class="collapse"
+                [ngClass]="{ show: filters(positionData).length > 0 }"
+                id="collapseFitting"
+              >
                 <div class="collapse-body">
                   <div
                     class="scroll-container mCustomScrollbar overflow-auto"
@@ -126,13 +148,22 @@
 
             <div class="widget">
               <div
-                class="btn-toogle"
-                data-toggle="collapse"
+                [ngClass]="{
+                  'btn-toogle': filters(brandData).length > 0,
+                  'btn-toogle-no-items': filters(brandData).length === 0
+                }"
+                [attr.data-toggle]="
+                  filters(brandData).length > 0 ? 'collapse' : null
+                "
                 data-target="#collapseBrands"
               >
                 Brands<i class="flaticon-down-arrow"></i>
               </div>
-              <div class="collapse show" id="collapseBrands">
+              <div
+                class="collapse"
+                [ngClass]="{ show: filters(brandData).length > 0 }"
+                id="collapseBrands"
+              >
                 <div class="collapse-body">
                   <div
                     class="scroll-container mCustomScrollbar overflow-auto"

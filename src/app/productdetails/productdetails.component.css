@@ -54,6 +54,9 @@
 hr{
     width: 110%;
 }
+form{
+    min-width: 503px;
+}
 .carousel{
     max-height: 95%;
 }

@@ -83,45 +83,31 @@ export class ProductdetailsComponent implements OnInit {
           Validators.minLength(2)
         ]
       }],
-      cross_ref: [
-        "",
-        {
+      cross_ref: ["",{
           validators: [Validators.required, Validators.minLength(1)],
         },
       ],
-      crossref_buy_price: [
-        "",
-        {
+      crossref_buy_price: ["",{
           validators: [Validators.required, Validators.min(0)],
         },
       ],
-      grades: [
-        "",
-        {
+      grades: ["",{
           validators: [Validators.required, Validators.minLength(1)],
         },
       ],
-      delivery_time: [
-        "",
-        {
+      delivery_time: ["",{
           validators: [Validators.required, Validators.minLength(1)],
         },
       ],
-      add_to_range: [
-        "Yes",
-        {
+      add_to_range: ["Yes",{
           validators: [Validators.required, Validators.pattern(/^(Yes|No)$/)],
         },
       ],
-      hold_stock: [
-        "Yes",
-        {
+      hold_stock: ["Yes",{
           validators: [Validators.required, Validators.pattern(/^(Yes|No)$/)],
         },
       ],
-      target_buy_price: [
-        "",
-        {
+      target_buy_price: ["",{
           validators: [Validators.required, Validators.min(0)],
         },
       ]

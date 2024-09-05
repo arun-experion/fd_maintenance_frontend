@@ -2,87 +2,52 @@
 <main>
     <div class="container">
         <div class="row my-4">
-            <div class="col-lg-3 d-none d-sm-block mb-3">
-                <h3 class="text-dark"> Product Attributes</h3>
-                <hr>
-                <div id="product-1" class="carousel slide d-flex h-100" data-ride="carousel" data-interval="false">
-                    <!-- aa -->
-                    <div *ngIf="ProductImages && ProductImages.length != 0"
-                        class="carousel-inner col rounded-0 img-thumbnail">
-                        <div *ngFor="let img of ProductImages" class="carousel-item"
-                            [ngClass]="{'active': img == selectedProductImage}">
-<!--                            <img src="{{img.image_url}}" class="d-block w-100" alt="...">-->
-                            <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
-                                <app-zoom [img]="img.image_url" [zoom]="3" [lenSize]="70"  class=" d-block w-100"  [divZoomed]="divZoomed" ></app-zoom>
-                                <div class="additional-information ">
-                                    <hr class="additional_info_line">
-                                    <div class="row mt-2 d-flex flex-row">
-                                        <div class="col-sm-6 col-6">
-                                            Fitting Position
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            {{productDetail.fitting_position}}
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            Brake System
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            {{ productDetail.brake_system ? productDetail.brake_system : productDetail.description }}
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            Length
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            {{productDetail.length}}
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            Height
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            {{productDetail.height}}
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            Thickness
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            {{productDetail.thickness}}
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            Weight (G)
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            {{productDetail.weight}}
-                                        </div>
-                                    </div>
-                                    <div class="row d-flex flex-row" *ngFor="let criteria of productDetail.criteria">
-                                        <div class="col-sm-6 col-6">
-                                            {{criteria.criteria_name}}
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            {{criteria.criteria_value}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngIf="!ProductImages || ProductImages.length == 0"
-                        class="carousel-inner col rounded-0 img-thumbnail d-flex justify-content-center">
-                        <img src="assets/images/footer-logo.png" class="rounded-circle footerLogPlaceHolder">
-                    </div>
-
-                    <div class="col-3 pl-2 pr-2" *ngIf="ProductImages">
-                        <ul class="list-unstyled d-inline carousel-indicators position-relative m-0">
-                            <li *ngFor="let img of ProductImages" data-target="#product-1" data-slide-to="0"
-                                class="mb-2 border h-auto w-auto" (click)="selectImage(img)"
-                                [ngClass]="{'active': img == selectedProductImage}">
-                                <img src="{{img.image_url}}" class="" alt="..."></li>
-
-                        </ul>
-                    </div>
+          <div class="col-lg-3 d-sm-block mb-3">
+            <div class="d-none d-sm-block">
+            <h3 class="text-dark">Product Attributes</h3>
+            <hr>
+            <div class="carousel slide d-flex h-50" id="product-1" data-ride="carousel" data-interval="false">
+              <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
+                <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
+                  <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
+                    <app-zoom [img]="img.image_url" [zoom]="3" [lenSize]="70" class="d-block w-100" [divZoomed]="divZoomed"></app-zoom>
+                  </div>
                 </div>
-
+              </div>
+              <div *ngIf="!ProductImages || ProductImages.length == 0" class="carousel-inner col rounded-0 img-thumbnail d-flex justify-content-center">
+                <img src="assets/images/footer-logo.png" class="rounded-circle footerLogPlaceHolder">
+              </div>
+       
+              <div class="col-3 pl-2 pr-2" *ngIf="ProductImages">
+                <ul class="list-unstyled d-inline carousel-indicators position-relative m-0">
+                  <li *ngFor="let img of ProductImages" data-target="#product-1" data-slide-to="0" class="mb-2 border h-auto w-auto" (click)="selectImage(img)" [ngClass]="{'active': img == selectedProductImage}">
+                    <img src="{{img.image_url}}" class="" alt="...">
+                  </li>
+                </ul>
+              </div>
             </div>
+            </div>         
+            <div class="additional-information d-none d-sm-block">
+              <div class="row mt-2 d-flex flex-row">
+                <div class="col-sm-6 col-6">Fitting Position</div>
+                <div class="col-sm-6 col-6">{{productDetail.fitting_position}}</div>
+                <div class="col-sm-6 col-6">Brake System</div>
+                <div class="col-sm-6 col-6">{{productDetail.brake_system ? productDetail.brake_system : productDetail.description}}</div>
+                <div class="col-sm-6 col-6">Length</div>
+                <div class="col-sm-6 col-6">{{productDetail.length}}</div>
+                <div class="col-sm-6 col-6">Height</div>
+                <div class="col-sm-6 col-6">{{productDetail.height}}</div>
+                <div class="col-sm-6 col-6">Thickness</div>
+                <div class="col-sm-6 col-6">{{productDetail.thickness}}</div>
+                <div class="col-sm-6 col-6">Weight (G)</div>
+                <div class="col-sm-6 col-6">{{productDetail.weight}}</div>
+              </div>
+              <div class="row d-flex flex-row" *ngFor="let criteria of productDetail.criteria">
+                <div class="col-sm-6 col-6">{{criteria.criteria_name}}</div>
+                <div class="col-sm-6 col-6">{{criteria.criteria_value}}</div>
+              </div>
+            </div>
+          </div>
             <div class="col-lg-4">
                 <h3 class="text-dark order_label"> Ordering</h3><hr class="ordering_line">
                 <div [ngClass]="{'low-opacity': isLow}"  #divZoomed class="img-zoom-result"></div>
@@ -167,6 +132,27 @@
                             Search</button>
                     </div>
                 </div>
+                <div class="additional-information d-lg-none d-md-none">
+                    <h3 class="text-dark">Product Attributes</h3><hr>
+                    <div class="row mt-2 d-flex flex-row">
+                      <div class="col-sm-6 col-6">Fitting Position</div>
+                      <div class="col-sm-6 col-6">{{productDetail.fitting_position}}</div>
+                      <div class="col-sm-6 col-6">Brake System</div>
+                      <div class="col-sm-6 col-6">{{productDetail.brake_system ? productDetail.brake_system : productDetail.description}}</div>
+                      <div class="col-sm-6 col-6">Length</div>
+                      <div class="col-sm-6 col-6">{{productDetail.length}}</div>
+                      <div class="col-sm-6 col-6">Height</div>
+                      <div class="col-sm-6 col-6">{{productDetail.height}}</div>
+                      <div class="col-sm-6 col-6">Thickness</div>
+                      <div class="col-sm-6 col-6">{{productDetail.thickness}}</div>
+                      <div class="col-sm-6 col-6">Weight (G)</div>
+                      <div class="col-sm-6 col-6">{{productDetail.weight}}</div>
+                    </div>
+                    <div class="row d-flex flex-row" *ngFor="let criteria of productDetail.criteria">
+                      <div class="col-sm-6 col-6">{{criteria.criteria_name}}</div>
+                      <div class="col-sm-6 col-6">{{criteria.criteria_value}}</div>
+                    </div>
+                  </div>
             </div>
             <div class="col-lg-5">
                 <h3 class="text-dark"> Market Intel</h3><hr class="market_intel_line">
@@ -274,11 +260,11 @@
                 <div class="row">
                 <label for="hold_stock" class="col-lg-7">Hold Stock</label>
                 <div class="input-animate hold_stock_radiobox">
-                <div class="form-check hold_stock_radiobox col-3">
+                <div class="form-check hold_stock_radiobox1 col-3">
                 <input class="form-check-input" type="radio" name="hold_stock" id="hold_stock_yes" value="Yes" formControlName="hold_stock" checked/>
                 <label class="form-check-label " for="hold_stock_yes"> Yes </label>
                 </div>
-                <div class="form-check col-2">
+                <div class="hold_stock_radiobox2 col-2">
                  <div class="hold_stock_no_main">
                 <input class="form-check-input" type="radio" name="hold_stock" id="hold_stock_no" value="No" formControlName="hold_stock"/>
                 <label class="form-check-label " for="hold_stock_no"> No </label>

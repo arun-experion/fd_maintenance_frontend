@@ -54,9 +54,10 @@
 hr{
     width: 110%;
 }
-form{
-    min-width: 503px;
+.carousel-inner{
+    height: 300px;
 }
+
 .carousel{
     max-height: 95%;
 }
@@ -118,6 +119,18 @@ margin: 0px;
     width: 70px;
     height: 70px;
 }
+@media (min-width: 1400px) and (max-width:2500px){
+    .additional-information{
+         width: 210px;
+        border: 1px solid  #dedede;
+        border-top: none;
+        margin-top: -5px;
+    }
+    form{
+        min-width: 503px;
+    }
+    }
+ 
   @media (max-width: 960px){
     .competitor_details{
         width: 100%;
@@ -136,20 +149,32 @@ hr{
     margin-top: 42px;
     margin-left: -96px;
 }
-.hold_stock_radiobox{
-    margin-top: 42px;
-    margin-left: -326px;
+.hold_stock_radiobox1{
+    padding: auto;
+    margin-top: 10px;
+    margin-left: 35px;
 }
 .hold_stock_no_main{
-    margin-left: 45px;
+    margin-left: -70px;
 }
 .add_to_range_no_main{
     margin-left: 52px;
 }
+.hold_stock_radiobox2{
+    margin-top: -32px;
+    margin-left: 165px;
+}
+.additional-information{
+    margin-top: 0px;
+}
+  }
+    
 @media (max-width: 424px) {
-.hold_stock_radiobox{
-    margin-top: 7px;
-    margin-left: 35px;
+    .competitor_details{
+        width: 100%;
+    }
+form{
+    min-width: 320px;
 }
-}
+
 }

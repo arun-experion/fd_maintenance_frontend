@@ -6,7 +6,7 @@
         <table class="table associatedParts">
             <thead>
                 <tr>
-                    <th scope="col" colspan="2">Part Number(s) & Name</th>
+                    <th scope="col" colspan="2" class="part_number_values">Part Number(s) & Name</th>
                     <th scope="col">Vehicle</th>
                     <th scope="col" *ngIf="isPriceVisible == true">Price</th>
                     <th scope="col">Stock</th>
@@ -17,7 +17,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let part of parts">
-                    <td>
+                    <td class="part_number_values">
                         <div class="row">
                             <a href="/productdetails/{{part.id}}" class=" part_number col d-flex align-items-start" style="height: 50px;">
                                 <img *ngIf="part.images.length != 0" src="{{part.images[0].image_url}}" alt=""
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </td>
-                    <td>
+                    <td class="buttons">
                         <div class="quantity-block mb-3">
                             <div class="input-group mt-0">
                                 <button type="button" class="quantity-minus btn btn-gray btn-icon" data-type="minus"

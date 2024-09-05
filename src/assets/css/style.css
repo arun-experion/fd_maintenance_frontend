@@ -49,6 +49,13 @@ img {
   }
 }
 
+@media (min-width: 1400px) {
+    .associated_parts_table {
+        margin-left: 328px;
+        max-width: 1280px;
+    }
+    }
+
 .card {
   border-radius: 0.5rem;
 }

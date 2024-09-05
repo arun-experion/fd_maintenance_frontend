@@ -6,3 +6,9 @@
 .associatedParts th {
     border: 0;
 }
+.quantity-block{
+    padding-right: 0px;
+}
+.part_number{
+    padding-left: 0px;
+}

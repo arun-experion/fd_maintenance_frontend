@@ -1,5 +1,5 @@
 <hr />
-<div class="container">
+<div class="container associated_parts_table">
     <h3 class="text-dark">Associated Parts</h3>
 
     <div class="overflow-auto mb-3 pr-3" style="max-height: 350px;">
@@ -19,7 +19,7 @@
                 <tr *ngFor="let part of parts">
                     <td>
                         <div class="row">
-                            <a href="/productdetails/{{part.id}}" class="col d-flex align-items-start" style="height: 50px;">
+                            <a href="/productdetails/{{part.id}}" class=" part_number col d-flex align-items-start" style="height: 50px;">
                                 <img *ngIf="part.images.length != 0" src="{{part.images[0].image_url}}" alt=""
                                     class="footerLogPlaceHolder p-0 mr-3">
 

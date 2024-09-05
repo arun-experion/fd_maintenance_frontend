@@ -83,6 +83,48 @@ export class ProductdetailsComponent implements OnInit {
           Validators.minLength(2)
         ]
       }],
+      cross_ref: [
+        "",
+        {
+          validators: [Validators.required, Validators.minLength(1)],
+        },
+      ],
+      crossref_buy_price: [
+        "",
+        {
+          validators: [Validators.required, Validators.min(0)],
+        },
+      ],
+      grades: [
+        "",
+        {
+          validators: [Validators.required, Validators.minLength(1)],
+        },
+      ],
+      delivery_time: [
+        "",
+        {
+          validators: [Validators.required, Validators.minLength(1)],
+        },
+      ],
+      add_to_range: [
+        "Yes",
+        {
+          validators: [Validators.required, Validators.pattern(/^(Yes|No)$/)],
+        },
+      ],
+      hold_stock: [
+        "Yes",
+        {
+          validators: [Validators.required, Validators.pattern(/^(Yes|No)$/)],
+        },
+      ],
+      target_buy_price: [
+        "",
+        {
+          validators: [Validators.required, Validators.min(0)],
+        },
+      ]
     });
     this.isLow = true;
   }
@@ -94,8 +136,15 @@ export class ProductdetailsComponent implements OnInit {
       this.$apiSer.post(`${NOTEAPI}`, this.noteForm.value).subscribe(res => {
         if (res.success) {
           this.toastr.success(res.message);
-          this.productDetail.notes.push(res.data);
-          this.noteForm.controls.description.setValue('');
+          this.productDetail.notes.splice(0,this.productDetail.notes.length,res.data);
+          this.noteForm.controls.description.setValue("");
+          this.noteForm.controls.cross_ref.setValue("");
+          this.noteForm.controls.crossref_buy_price.setValue("");
+          this.noteForm.controls.grades.setValue("");
+          this.noteForm.controls.delivery_time.setValue("");
+          this.noteForm.controls.add_to_range.setValue("Yes");
+          this.noteForm.controls.hold_stock.setValue("Yes");
+          this.noteForm.controls.target_buy_price.setValue("");
           this.isNoteFormSubmoted = false;
         } else {
           this.toastr.warning(res.message)
@@ -123,7 +172,6 @@ export class ProductdetailsComponent implements OnInit {
 
     this.ProductId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.getProductDetail();
-
     this.showPrice.setPriceChangeDisabled(false);
 
     this.showPrice.isPriceVisible.subscribe(res => {
@@ -167,6 +215,8 @@ export class ProductdetailsComponent implements OnInit {
             this.interStateQuantity = this.interStateQuantity + branch.qty;
           }
         });
+        console.log("Notes :",this.productDetail.notes);
+
         this.productDetail.quantity = 1;
         this.productDetail.addToCart = 0;
         const indexIntheCompareList = this.compareProductListIDs.indexOf(this.productDetail.id);

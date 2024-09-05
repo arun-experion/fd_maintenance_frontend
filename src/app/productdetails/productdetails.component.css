@@ -22,7 +22,6 @@
 }
 .img-result-zoomed{
     display: none;
-
 }
 .additional-information{
     margin-top: 300px;
@@ -47,7 +46,6 @@
 .competitor_details_values{
     line-height: 35px;
 }
-
 .btn-outline-primary {
     display: inline-block;
     margin-top: 10px; 
@@ -59,20 +57,16 @@ hr{
 .carousel{
     max-height: 95%;
 }
-
 .form-horizontal .form-group {
     margin-bottom: 1rem;
     position: relative;
   }
-  
   .form-horizontal .form-group label {
     margin-bottom: 0.5rem;
-  }
-  
+  }  
   .input-animate {
     position: relative;
-  }
-  
+  } 
   .input-animate input,
   .input-animate select,
   .input-animate textarea {
@@ -81,17 +75,14 @@ hr{
     border-radius: 4px;
     transition: all 0.3s ease;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
+  } 
   .form-check {
     display: inline-block;
     margin-right: 1rem;
-  }
-  
+  } 
   .form-check-input {
     margin-top: 0.3rem;
-  }
-  
+  } 
   .form-check-label {
     margin-left: 0.3rem;
   }
@@ -112,13 +103,10 @@ margin: 0px;
     margin-left: 30px;
     max-width: 80px;
 }
-
-
 .ordering_line,
 .additional_info_line{
     margin-left: -5px;
 }
-
 .add_to_range_no_main,
 .hold_stock_no_main{
     margin-left: 32px;
@@ -137,11 +125,9 @@ margin: 0px;
 hr{
     width: 100%;
 }
-
 .add_to_range_label {
     margin-right: 0;
 }
-
 .add_to_range_radiobox 
 {
     margin-top: 42px;

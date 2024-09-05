@@ -57,7 +57,6 @@ hr{
 .carousel-inner{
     height: 300px;
 }
-
 .carousel{
     max-height: 95%;
 }
@@ -176,5 +175,4 @@ hr{
 form{
     min-width: 320px;
 }
-
 }

@@ -192,7 +192,7 @@
                   <div class="col-lg-6 col-md-6 col-6"> Comments:</div>
                   <div class="col-lg-6 col-md-6 col-6 text-dark">{{ productDetail.notes[0].description }}</div>
                 </div>               
-                <form *ngIf="userid !== undefined" class="form-horizontal w-100" [formGroup]="noteForm" (ngSubmit)="onSubmitNoteForm()">
+                <form *ngIf="userid !== undefined" class="form-horizontal" [formGroup]="noteForm" (ngSubmit)="onSubmitNoteForm()">
                 <div class="form-group">
                     <div class="input-animate">
                         <input type="hidden" class="form-control" formControlName="product">

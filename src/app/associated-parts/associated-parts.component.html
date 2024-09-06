@@ -1,12 +1,12 @@
 <hr />
-<div class="container">
+<div class="container associated_parts_table">
     <h3 class="text-dark">Associated Parts</h3>
 
     <div class="overflow-auto mb-3 pr-3" style="max-height: 350px;">
         <table class="table associatedParts">
             <thead>
                 <tr>
-                    <th scope="col" colspan="2">Part Number(s) & Name</th>
+                    <th scope="col" colspan="2" class="part_number_values">Part Number(s) & Name</th>
                     <th scope="col">Vehicle</th>
                     <th scope="col" *ngIf="isPriceVisible == true">Price</th>
                     <th scope="col">Stock</th>
@@ -22,16 +22,20 @@
                             <a href="/productdetails/{{part.id}}" class="col d-flex align-items-start" style="height: 50px;">
                                 <img *ngIf="part.images.length != 0" src="{{part.images[0].image_url}}" alt=""
                                     class="footerLogPlaceHolder p-0 mr-3">
-
                                 <img *ngIf="part.images && part.images.length == 0" src="assets/images/footer-logo.png"
                                     alt="" class="footerLogPlaceHolder p-0 mr-3">
-                                <div>
-                                    <div class="font-weight-bold">{{part.company_sku}}</div>
-                                    <div *ngIf="part.cross_reference_numbers != ''">or</div>
-                                    <div *ngIf="part.cross_reference_numbers != ''">{{part.cross_reference_numbers}}
-                                    </div>
-                                </div>
                             </a>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12 col-md-6 font-weight-bold">
+                                {{ part.company_sku }}
+                            </div>
+                            <div *ngIf="part.cross_reference_numbers != ''" class="col-1 col-md-6">
+                                or
+                            </div>
+                            <div *ngIf="part.cross_reference_numbers != ''" class="col-12 col-md-6 text-md-right">
+                                {{ part.cross_reference_numbers }}
+                            </div>
                         </div>
                     </td>
                     <td>
@@ -79,7 +83,7 @@
                             </div>
                         </div>
                     </td>
-                    <td>
+                    <td class="buttons">
                         <div class="quantity-block mb-3">
                             <div class="input-group mt-0">
                                 <button type="button" class="quantity-minus btn btn-gray btn-icon" data-type="minus"

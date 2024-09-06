@@ -201,8 +201,6 @@ export class ProductdetailsComponent implements OnInit {
             this.interStateQuantity = this.interStateQuantity + branch.qty;
           }
         });
-        console.log("Notes :",this.productDetail.notes);
-
         this.productDetail.quantity = 1;
         this.productDetail.addToCart = 0;
         const indexIntheCompareList = this.compareProductListIDs.indexOf(this.productDetail.id);

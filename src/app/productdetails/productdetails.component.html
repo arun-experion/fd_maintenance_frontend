@@ -10,7 +10,7 @@
               <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
                 <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
                   <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
-                    <app-zoom [img]="img.image_url" [zoom]="7" [lenSize]="70" class="d-block w-100" [divZoomed]="divZoomed"></app-zoom>
+                    <app-zoom [img]="img.image_url" [zoom]="5" [lenSize]="70" class="d-block w-100" [divZoomed]="divZoomed"></app-zoom>
                   </div>
                 </div>
               </div>

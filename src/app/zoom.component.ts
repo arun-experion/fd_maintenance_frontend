@@ -24,8 +24,8 @@ class="img-zoom-lens">
 })
 export class ZoomComponent {
     @Input('img') imagen: string;
-    @Input() zoom=2;
-    @Input() lenSize=40;
+    @Input() zoom=5;
+    @Input() lenSize=70;
     @Input() imgWidth;
     @Input() imgHeigth;
     @Input() divZoomed:ElementRef

@@ -10,7 +10,7 @@
               <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
                 <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
                   <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
-                    <app-zoom [img]="img.image_url" [zoom]="3" [lenSize]="70" class="d-block w-100" [divZoomed]="divZoomed"></app-zoom>
+                    <app-zoom [img]="img.image_url" [zoom]="7" [lenSize]="70" class="d-block w-100" [divZoomed]="divZoomed"></app-zoom>
                   </div>
                 </div>
               </div>
@@ -62,24 +62,18 @@
                         <app-vehicles *ngIf="productDetail && productDetail.vehicles && productDetail.vehicles.length != 0" [vehicles]="productDetail.vehicles"></app-vehicles>
                     </div>
 
-                    <div class="col-3 pl-2 pr-2 d-sm-none">
-                        <ul class="list-unstyled d-inline position-relative m-0">
-                            <li data-target="#product-1" data-slide-to="0" class="active mb-2 border h-auto w-auto">
-                                <img src="assets/images/thumb1.jpg" class="" alt="...">
-                            </li>
-                            <li data-target="#product-1" data-slide-to="1" class="mb-2 border h-auto w-auto">
-                                <img src="assets/images/thumb2.jpg" class="" alt="...">
-                            </li>
-                            <li data-target="#product-1" data-slide-to="2" class="mb-2 border h-auto w-auto">
-                                <img src="assets/images/thumb3.jpg" class="" alt="...">
-                            </li>
-                            <li data-target="#product-1" data-slide-to="2" class="mb-2 border h-auto w-auto">
-                                <img src="assets/images/thumb2.jpg" class="" alt="...">
-                            </li>
-                        </ul>                       
-                    </div>
                 </div>
-
+                <div class="col-12 pl-2 pr-2 d-sm-none">
+                    <div class="row">
+                      <div class="col-4" *ngFor="let img of ProductImages; let i = index">
+                        <ul class="list-unstyled d-inline position-relative m-0">
+                          <li data-target="#product-1" [attr.data-slide-to]="i" class="mb-2 border h-auto w-auto" (click)="selectImage(img)" [ngClass]="{'active': img == selectedProductImage}">
+                            <img [src]="img.image_url" alt="...">
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 <div class="d-flex flex-row align-items-top row">
                     <div class="col-sm-4 col-4" *ngIf="isPriceVisible == true">
                         <h2 class="mt-1 mb-3">{{productDetail.price_nett | currency: 'USD': 'symbol': '1.2-2'}}</h2>
@@ -156,27 +150,51 @@
             </div>
             <div class="col-lg-5">
                 <h3 class="text-dark"> Market Intel</h3><hr class="market_intel_line">
-                <div class="competitor_details row">
-                  <div class="col-lg-6 col-md-6 col-6">
-                    Cross Ref:
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-6 text-dark" *ngIf="productDetail.notes.length != 0">
+                <div class="competitor_details">
+                    <div class="row">
+                  <div class="col-lg-5 col-md-5 col-5">Cross Ref</div>
+                  <div class="col-lg-1 col-md-1 col-1"> :</div>
+
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes.length != 0">
                     <span class="h5 text-dark">{{ productDetail.notes[0].cross_ref }}</span>
                   </div>
-                  <div class="col-lg-6 col-md-6 col-6"> Cross Ref Buy Price:</div>
-                  <div class="col-lg-6 col-md-6 col-6 text-dark">${{ productDetail.notes[0].crossref_buy_price }}</div>
-                  <div class="col-lg-6 col-md-6 col-6">Grade:</div>
-                  <div class="col-lg-6 col-md-6 col-6 text-dark">{{ productDetail.notes[0].grades }}</div>
-                  <div class="col-lg-6 col-md-6 col-6">Delivery Time:</div>
-                  <div class="col-lg-6 col-md-6 col-6 text-dark">{{ productDetail.notes[0].delivery_time }}</div>
-                  <div class="col-lg-6 col-md-6 col-6">Add to Range:</div>
-                  <div class="col-lg-6 col-md-6 col-6 text-dark">{{ productDetail.notes[0].add_to_range }}</div>
-                  <div class="col-lg-6 col-md-6 col-6"> Hold Stock:</div>
-                  <div class="col-lg-6 col-md-6 col-6 text-dark">{{ productDetail.notes[0].hold_stock }}</div>
-                  <div class="col-lg-6 col-md-6 col-6"> Target Buy Price:</div>
-                  <div class="col-lg-6 col-md-6 col-6 text-dark">${{ productDetail.notes[0].target_buy_price }}</div>
-                  <div class="col-lg-6 col-md-6 col-6"> Comments:</div>
-                  <div class="col-lg-6 col-md-6 col-6 text-dark">{{ productDetail.notes[0].description }}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-5 col-md-5 col-5"> Cross Ref Buy Price</div>
+                  <div class="col-lg-1 col-md-1 col-1"> :</div>
+                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].crossref_buy_price ? ('$' + productDetail.notes[0].crossref_buy_price) : null }}
+                </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-lg-5 col-md-5 col-5">Grade</div>
+                  <div class="col-lg-1 col-md-1 col-1"> :</div>
+                  <div class="col-lg-6 col-md-6 col-6">{{ productDetail.notes[0].grades }}</div>
+                  </div>
+                  <div class="row">
+                  <div class="col-lg-5 col-md-5 col-5">Delivery Time</div>
+                  <div class="col-lg-1 col-md-1 col-1"> :</div>
+                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].delivery_time }}</div>
+                  </div>
+                  <div class="row">
+                  <div class="col-lg-5 col-md-5 col-5">Add to Range</div>
+                  <div class="col-lg-1 col-md-1 col-1"> :</div>
+                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].add_to_range }}</div>
+                  </div>
+                  <div class="row">
+                  <div class="col-lg-5 col-md-5 col-5"> Hold Stock</div>
+                  <div class="col-lg-1 col-md-1 col-1"> :</div>
+                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].hold_stock }}</div>
+                  </div>
+                  <div class="row">
+                  <div class="col-lg-5 col-md-5 col-5"> Target Buy Price</div>
+                  <div class="col-lg-1 col-md-1 col-1"> :</div>
+                  <div class="col-lg-6 col-md-6 col-6">{{ productDetail.notes[0].target_buy_price ? ('$' + productDetail.notes[0].target_buy_price) : null }}</div>
+                  </div>
+                  <div class="row">
+                  <div class="col-lg-5 col-md-5 col-5"> Comments</div>
+                  <div class="col-lg-1 col-md-1 col-1"> :</div>
+                  <div class="col-lg-6 col-md-6 col-6">{{ productDetail.notes[0].description }}</div>
+                  </div>
                 </div>               
                 <form *ngIf="userid !== undefined" class="form-horizontal" [formGroup]="noteForm" (ngSubmit)="onSubmitNoteForm()">
                 <div class="form-group">

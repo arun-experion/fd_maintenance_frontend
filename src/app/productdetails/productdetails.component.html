@@ -51,6 +51,17 @@
             <div class="col-lg-4">
                 <h3 class="text-dark order_label"> Ordering</h3><hr class="ordering_line">
                 <div [ngClass]="{'low-opacity': isLow}"  #divZoomed class="img-zoom-result"></div>
+                <div class="col-12 pl-2 pr-2 d-sm-none">
+                    <div class="row">
+                      <div class="col-4" *ngFor="let img of ProductImages; let i = index">
+                        <ul class="list-unstyled d-inline position-relative m-0">
+                          <li data-target="#product-1" [attr.data-slide-to]="i" class="mb-2 border h-auto w-auto" (click)="selectImage(img)" [ngClass]="{'active': img == selectedProductImage}">
+                            <img [src]="img.image_url" alt="...">
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 <div class="d-flex flex-row align-items-top row">
                     <div class="col" *ngIf="productDetail">
                         <p class="mb-0 text-muted">Part Number</p>
@@ -63,17 +74,7 @@
                     </div>
 
                 </div>
-                <div class="col-12 pl-2 pr-2 d-sm-none">
-                    <div class="row">
-                      <div class="col-4" *ngFor="let img of ProductImages; let i = index">
-                        <ul class="list-unstyled d-inline position-relative m-0">
-                          <li data-target="#product-1" [attr.data-slide-to]="i" class="mb-2 border h-auto w-auto" (click)="selectImage(img)" [ngClass]="{'active': img == selectedProductImage}">
-                            <img [src]="img.image_url" alt="...">
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+               
                 <div class="d-flex flex-row align-items-top row">
                     <div class="col-sm-4 col-4" *ngIf="isPriceVisible == true">
                         <h2 class="mt-1 mb-3">{{productDetail.price_nett | currency: 'USD': 'symbol': '1.2-2'}}</h2>
@@ -122,11 +123,13 @@
                                 [checked]="productDetail.is_compare == 0 ? false : true">
                             <label class="custom-control-label" for="compareCheck1">Compare</label>
                         </div>
-                        <button (click)="back()" class="btn btn-outline-secondary btn-order btn-long my-3 col-7">Back to
+                    </div>
+                    <div class="back_to_search">
+                        <button (click)="back()" class="btn btn-outline-secondary btn-order btn-long my-3">Back to
                             Search</button>
                     </div>
                 </div>
-                <div class="additional-information d-lg-none d-md-none">
+                <div class="additional-information d-lg-none d-md-none mt-5">
                     <h3 class="text-dark">Product Attributes</h3><hr>
                     <div class="row mt-2 d-flex flex-row">
                       <div class="col-sm-6 col-6">Fitting Position</div>

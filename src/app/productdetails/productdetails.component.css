@@ -136,6 +136,11 @@ margin: 0px;
     .competitor_details{
         min-width: 498px;
     }
+    .back_to_search{
+        position: absolute;
+        bottom:10px;
+        left:50%;
+    }
     }
  
   @media (max-width: 960px){
@@ -174,13 +179,23 @@ hr{
 .additional-information{
     margin-top: 0px;
 }
+.back_to_search{
+    position: absolute;
+    bottom:16px;
+    left:67%;
+}
   }
     
-@media (max-width: 424px) {
+@media (max-width: 425px) {
     .competitor_details{
         width: 100%;
     }
 form{
     min-width: 320px;
+}
+.back_to_search{
+    position: absolute;
+    bottom:195px;
+    left:52%;
 }
 }

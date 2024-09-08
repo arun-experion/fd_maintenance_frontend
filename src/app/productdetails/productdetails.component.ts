@@ -159,7 +159,6 @@ export class ProductdetailsComponent implements OnInit {
     this.ProductId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.getProductDetail();
     this.showPrice.setPriceChangeDisabled(false);
-
     this.showPrice.isPriceVisible.subscribe(res => {
       this.isPriceVisible = res;
     });

@@ -26,6 +26,7 @@
 .quantity-block {
   max-width: 90px;
 }
+
 @media (max-width: 550px) {
   .partsTable th,
   .partsTable td {

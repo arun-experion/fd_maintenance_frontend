@@ -23,9 +23,6 @@
 .img-result-zoomed{
     display: none;
 }
-.additional-information{
-    margin-top: 300px;
-}
 .main-product-file:hover .img-result-zoomed{
     background-color: blue!important;
     display: block!important;
@@ -115,11 +112,15 @@ margin: 0px;
 }
 .hold_stock_no_main{
     margin-top: -31px;
-    margin-left: 43px;
+    margin-left: 54px;
 }
 .image_thumbnail{
     width: 70px;
     height: 70px;
+}
+.additional-information-mobile{
+    padding-right: 15px;
+    padding-left: 15px;
 }
 @media (min-width: 1400px) and (max-width:2500px){
     .additional-information{
@@ -170,7 +171,7 @@ hr{
     margin-left: -70px;
 }
 .add_to_range_no_main{
-    margin-left: 52px;
+    margin-left: 20px;
 }
 .hold_stock_radiobox2{
     margin-top: -32px;
@@ -183,6 +184,9 @@ hr{
     position: absolute;
     bottom:16px;
     left:67%;
+}
+.market_intel_line{
+    min-width: 679px;
 }
   }
     
@@ -198,4 +202,48 @@ form{
     bottom:195px;
     left:52%;
 }
+.add_to_range_no_main{
+    margin-left: 15px;
+}
+.market_intel_line{
+    min-width: 390px;
+}
+}
+@media(min-width:985px) and (max-width:1210px){
+    .column-heading{
+        font-size: 24.8px;
+    }
+}
+@media (max-width: 1400px) and (min-width:2500px){
+    .add_to_range_label {
+        margin-right: 0;
+    }
+    .add_to_range_radiobox 
+    {
+        margin-top: 42px;
+        margin-left: -96px;
+    }
+    .hold_stock_radiobox1{
+        padding: auto;
+        margin-top: 10px;
+        margin-left: 35px;
+    }
+    .hold_stock_no_main{
+        margin-left: -70px;
+    }
+    .add_to_range_no_main{
+        margin-left: 20px;
+    }
+    .hold_stock_radiobox2{
+        margin-top: -32px;
+        margin-left: 165px;
+    } 
+}
+@media (max-width: 1380px) and (min-width:950px) {
+    .add_to_range_label{
+        min-width: 150px;
+    }
+    .hold_stock_radiobox{
+        margin-left: 33px;
+    }
 }

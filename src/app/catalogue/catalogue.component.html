@@ -278,18 +278,11 @@
                 </ng-template>
                 <ng-template #available let-modal>
                   <div class="modal-body catalogue-v-l">
-                    <p
-                      (click)="modal.dismiss('Cross click')"
-                      class="mb-0 text-muted cur-pointer"
-                      style="float: right; margin-top: -10px"
-                    >
+                    <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="float: right; margin-top: -10px">
                       X
                     </p>
                     <h3 class="text-dark">Market Intel</h3><hr>
-                    <div
-                      class="overflow-auto mb-3 pr-3 pl-3"
-                      style="min-height: 250px text-center"
-                    >
+                    <div class="overflow-auto mb-3 pr-3" style="min-height: 250px text-center">
                     <form *ngIf="userid !== undefined" class="form-horizontal" [formGroup]="noteForm" (ngSubmit)="onSubmitNoteForm()">
                       <div class="form-group">
                           <div class="input-animate">
@@ -358,8 +351,7 @@
                       </div>
                       <span class="focus-border"><i></i></span>
                       </div>
-                      <control-messages *ngIf="isNoteFormSubmoted" [control]="noteForm.get('add_to_range')"></control-messages>
-                      
+                      <control-messages *ngIf="isNoteFormSubmoted" [control]="noteForm.get('add_to_range')"></control-messages>                     
                       </div>
                       <div class="form-group col-6" >
                       <label for="hold_stock" class="row pl-4">Hold Stock</label>

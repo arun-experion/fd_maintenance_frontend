@@ -13,7 +13,8 @@ import {
   SESSIONSTORAGECOMPARELIST,
   SESSIONSTORAGECOMPARELISTIDS,
   COMPAREOVERLAYTIMEOUT,
-  POSITIONSAPI
+  POSITIONSAPI,
+  NOTEAPI
 } from '../constant';
 import { Util } from '../utils/util';
 import { ToastrService } from 'ngx-toastr';
@@ -22,6 +23,7 @@ import { CompareService } from '../services/compare.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../product.model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-catalogue',
@@ -57,9 +59,14 @@ export class CatalogueComponent implements OnInit {
   fittingPositionList : any = [];
   filteredProductData : any = [];
   resultDataArr : any;
-
+  userid: any;
+  isNoteFormSubmoted = false;
+  loading = false;
+  user: any;
+  selectedPartId: number | null = null;
 
   @ViewChild('catalogueBackOrderModal', { static: false }) catalogueBackOrderModal;
+
 
   private productNr: string;
   private ishovering: boolean;
@@ -81,7 +88,12 @@ export class CatalogueComponent implements OnInit {
     //"VIC": "Victoria Branch",
     "WA" : "Western Australia Branch",
     "VIC": "Victoria Warehouse, Victoria Branch, VIC SOUTHERN DC, VIC NORTHERN DC"
-  }
+  };
+  ProductId: number;
+  productDetail: any = {};
+
+  noteForm: FormGroup;
+
 
   @Input() visible = false;
 
@@ -95,25 +107,106 @@ export class CatalogueComponent implements OnInit {
     private authSer: AuthenticationService,
     private modal: NgbModal,
     private router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private fb: FormBuilder
   ) {
     this.route.queryParams.subscribe(params => {
       this.queryParams = params;
     });
     this.authSer.currentUser.subscribe(user => {
       this.currentUser = user;
+      this.userid = user.id;
+      this.user = user;
       // console.log(user)
-    })
+    });
+    this.noteForm = this.fb.group({
+      product: [this.route.snapshot.paramMap.get('id'), {}],
+      user_id: [this.userid, {}],
+      description: ['', {
+        validators: [
+          Validators.required,
+          Validators.minLength(2)
+        ]
+      }],
+      cross_ref: ["",{
+          validators: [Validators.required, Validators.minLength(1)],
+        },
+      ],
+      crossref_buy_price: ["",{
+          validators: [Validators.required, Validators.min(0)],
+        },
+      ],
+      grades: ["",{
+          validators: [Validators.required, Validators.minLength(1)],
+        },
+      ],
+      delivery_time: ["",{
+          validators: [Validators.required, Validators.minLength(1)],
+        },
+      ],
+      add_to_range: ["Yes",{
+          validators: [Validators.required, Validators.pattern(/^(Yes|No)$/)],
+        },
+      ],
+      hold_stock: ["Yes",{
+          validators: [Validators.required, Validators.pattern(/^(Yes|No)$/)],
+        },
+      ],
+      target_buy_price: ["",{
+          validators: [Validators.required, Validators.min(0)],
+        },
+      ]
+    });
+  }
+
+  onSubmitNoteForm() {
+    this.isNoteFormSubmoted = true;
+    this.noteForm.controls.product.setValue(this.selectedPartId);
+    if (this.noteForm.valid) {
+      this.loading = true;
+      this.$apiSer.post(`${NOTEAPI}`, this.noteForm.value).subscribe(res => {
+        if (res.success) {
+          this.toastr.success(res.message);
+          this.noteForm.controls.description.setValue("");
+          this.noteForm.controls.cross_ref.setValue("");
+          this.noteForm.controls.crossref_buy_price.setValue("");
+          this.noteForm.controls.grades.setValue("");
+          this.noteForm.controls.delivery_time.setValue("");
+          this.noteForm.controls.add_to_range.setValue("Yes");
+          this.noteForm.controls.hold_stock.setValue("Yes");
+          this.noteForm.controls.target_buy_price.setValue("");
+          this.modal.dismissAll();
+          this.isNoteFormSubmoted = false;
+        } else {
+          this.toastr.warning(res.message)
+        }
+      }, error => console.log(error), () => {
+        this.loading = false;
+      });
+    } else {
+      this.validateAllFormFields(this.noteForm);
+    }
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
   }
 
   ngOnInit() {
     // this.getBrands();
     // this.getCategory();
     this.getAllProducts();
+    this.getProductDetail();
     // this.getFittingPosition();
-
     this.showPrice.setPriceChangeDisabled(false);
-
+    this.ProductId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.showPrice.isPriceVisible.subscribe(res => {
       this.isPriceVisible = res;
     });
@@ -141,6 +234,16 @@ export class CatalogueComponent implements OnInit {
         this.visible = true;
       }, COMPAREOVERLAYTIMEOUT)
     }
+
+  }
+
+  getProductDetail() {
+    return this.Productlist.getProductDetail(this.ProductId)
+      .subscribe((response: { success: any, data: any }) => {
+        this.productDetail = response.data;    
+        this.productDetail.quantity = 1;
+        this.productDetail.addToCart = 0;
+      });
 
   }
 
@@ -496,7 +599,8 @@ export class CatalogueComponent implements OnInit {
     this.Productlist.updateProductList(this.productData);
   }
 
-  open(content) {
+  open(content,partId) {
+    this.selectedPartId=partId;
     this.modal.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 

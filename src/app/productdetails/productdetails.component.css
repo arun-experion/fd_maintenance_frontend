@@ -23,9 +23,6 @@
 .img-result-zoomed{
     display: none;
 }
-.additional-information{
-    margin-top: 300px;
-}
 .main-product-file:hover .img-result-zoomed{
     background-color: blue!important;
     display: block!important;
@@ -48,7 +45,7 @@
 }
 .btn-outline-primary {
     display: inline-block;
-    margin-top: 54px; 
+    margin-top: 47px; 
     margin-left: 99px; 
   }
 hr{
@@ -103,8 +100,11 @@ margin: 0px;
     padding: 0px;
 }
 .add_to_range_radiobox{
-    margin-left: 30px;
+    margin-left: 22px;
     max-width: 80px;
+}
+.hold_stock_radiobox1{
+    margin-left: 5px;
 }
 .ordering_line,
 .additional_info_line{
@@ -115,11 +115,15 @@ margin: 0px;
 }
 .hold_stock_no_main{
     margin-top: -31px;
-    margin-left: 43px;
+    margin-left: 54px;
 }
 .image_thumbnail{
     width: 70px;
     height: 70px;
+}
+.additional-information-mobile{
+    padding-right: 15px;
+    padding-left: 15px;
 }
 @media (min-width: 1400px) and (max-width:2500px){
     .additional-information{
@@ -138,7 +142,7 @@ margin: 0px;
     }
     .back_to_search{
         position: absolute;
-        bottom:10px;
+        bottom: 0px;
         left:50%;
     }
     }
@@ -152,6 +156,9 @@ margin: 0px;
    }
 hr{
     width: 100%;
+}
+.save_note{
+    margin-top: 10px;
 }
 .add_to_range_label {
     margin-right: 0;
@@ -170,7 +177,7 @@ hr{
     margin-left: -70px;
 }
 .add_to_range_no_main{
-    margin-left: 52px;
+    margin-left: 20px;
 }
 .hold_stock_radiobox2{
     margin-top: -32px;
@@ -184,6 +191,12 @@ hr{
     bottom:16px;
     left:67%;
 }
+.market_intel_line{
+    min-width: 679px;
+}
+.ordering_button{
+    margin-left: 240px;
+}
   }
     
 @media (max-width: 425px) {
@@ -193,9 +206,56 @@ hr{
 form{
     min-width: 320px;
 }
+.ordering_button{
+    margin-left: 0px;
+}
 .back_to_search{
     position: absolute;
     bottom:195px;
     left:52%;
 }
+.add_to_range_no_main{
+    margin-left: 15px;
+}
+.market_intel_line{
+    min-width: 390px;
+}
+}
+@media(min-width:985px) and (max-width:1210px){
+    .column-heading{
+        font-size: 24.8px;
+    }
+}
+@media (max-width: 1400px) and (min-width:2500px){
+    .add_to_range_label {
+        margin-right: 0;
+    }
+    .add_to_range_radiobox 
+    {
+        margin-top: 42px;
+        margin-left: -96px;
+    }
+    .hold_stock_radiobox1{
+        padding: auto;
+        margin-top: 10px;
+        margin-left: 35px;
+    }
+    .hold_stock_no_main{
+        margin-left: -70px;
+    }
+    .add_to_range_no_main{
+        margin-left: 20px;
+    }
+    .hold_stock_radiobox2{
+        margin-top: -32px;
+        margin-left: 165px;
+    } 
+}
+@media (max-width: 1380px) and (min-width:950px) {
+    .add_to_range_label{
+        min-width: 150px;
+    }
+    .hold_stock_radiobox{
+        margin-left: 33px;
+    }
 }

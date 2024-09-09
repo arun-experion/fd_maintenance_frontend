@@ -10,7 +10,7 @@
               <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
                 <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
                   <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
-                    <app-zoom [img]="img.image_url" [zoom]="10" [lenSize]="70" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
+                    <app-zoom [img]="img.image_url" [zoom]="8" [lenSize]="50" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
                     <app-zoom [img]="img.image_url" [zoom]="2" [lenSize]="80" class="d-md-block d-none d-lg-none w-100" [divZoomed]="divZoomed2"></app-zoom>
                   </div>
                 </div>
@@ -49,7 +49,6 @@
                 <div class="col-sm-6 col-6">{{criteria.criteria_value}}</div>
               </div>
             </div>
-
           </div>
           <div class="additional-information-mobile d-lg-none d-md-none">
             <h3 class="text-dark">Product Attributes</h3><hr>
@@ -139,7 +138,7 @@
                                         class="flaticon-plus-symbol"></i></button>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-order col-5"
+                        <button type="button" class="btn btn-primary btn-order col-5 text-nowrap"
                             (click)="addToCart(productDetail);">Add to Order</button>
                         <div class="custom-control custom-checkbox mt-2" *ngIf="productDetail.is_compare != undefined"
                             (click)="onCompareChange(productDetail)">
@@ -147,11 +146,11 @@
                                 [checked]="productDetail.is_compare == 0 ? false : true">
                             <label class="custom-control-label" for="compareCheck1">Compare</label>
                         </div>
-                        <button (click)="back()" class="btn btn-outline-secondary btn-order btn-long my-3 col-7 d-lg-none d-md-block ml-auto">Back to
+                        <button (click)="back()" class="btn btn-outline-secondary btn-order btn-long my-3 col-7 d-lg-none d-md-block ml-auto text-nowrap">Back to
                           Search</button>
                     </div>
                     <div class="back_to_search  d-none d-lg-block ml-auto">
-                        <button (click)="back()" class="btn btn-outline-secondary btn-order btn-long my-3">Back to
+                        <button (click)="back()" class="btn btn-outline-secondary btn-order btn-long my-3 text-nowrap">Back to
                             Search</button>
                     </div>
                 </div>

@@ -147,7 +147,7 @@ margin: 0px;
     }
     }
  
-  @media (max-width: 960px){
+  @media (max-width: 991px){
     .competitor_details{
         width: 100%;
     }

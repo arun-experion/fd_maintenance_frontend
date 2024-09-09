@@ -506,7 +506,6 @@
                         Interstate : {{ part.qty - part.currentUserStateQty }}
                       </li>
                       <li class="text-danger" *ngIf="part.qty === 0">
-                          <!-- {{part.id}} -->
                         <a
                       (click)="open(available,part.id)"
                       class="cur-pointer"

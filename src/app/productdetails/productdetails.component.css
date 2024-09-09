@@ -45,7 +45,7 @@
 }
 .btn-outline-primary {
     display: inline-block;
-    margin-top: 54px; 
+    margin-top: 47px; 
     margin-left: 99px; 
   }
 hr{
@@ -100,8 +100,11 @@ margin: 0px;
     padding: 0px;
 }
 .add_to_range_radiobox{
-    margin-left: 30px;
+    margin-left: 22px;
     max-width: 80px;
+}
+.hold_stock_radiobox1{
+    margin-left: 5px;
 }
 .ordering_line,
 .additional_info_line{
@@ -139,7 +142,7 @@ margin: 0px;
     }
     .back_to_search{
         position: absolute;
-        bottom:10px;
+        bottom: 0px;
         left:50%;
     }
     }
@@ -153,6 +156,9 @@ margin: 0px;
    }
 hr{
     width: 100%;
+}
+.save_note{
+    margin-top: 10px;
 }
 .add_to_range_label {
     margin-right: 0;
@@ -188,6 +194,9 @@ hr{
 .market_intel_line{
     min-width: 679px;
 }
+.ordering_button{
+    margin-left: 240px;
+}
   }
     
 @media (max-width: 425px) {
@@ -196,6 +205,9 @@ hr{
     }
 form{
     min-width: 320px;
+}
+.ordering_button{
+    margin-left: 0px;
 }
 .back_to_search{
     position: absolute;

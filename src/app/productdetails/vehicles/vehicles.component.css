@@ -1,3 +1,8 @@
 .vehicleTable th {
     border: 0;
+    padding: 6.5px;
+}
+.vehicleTable td {
+    border: 0;
+    padding: 6.5px;
 }

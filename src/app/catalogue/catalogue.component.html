@@ -287,7 +287,7 @@
                     </p>
                     <h3 class="text-dark">Market Intel</h3><hr>
                     <div
-                      class="overflow-auto mb-3 pr-3"
+                      class="overflow-auto mb-3 pr-3 pl-3"
                       style="min-height: 250px text-center"
                     >
                     <form *ngIf="userid !== undefined" class="form-horizontal" [formGroup]="noteForm" (ngSubmit)="onSubmitNoteForm()">
@@ -384,17 +384,15 @@
                         <label for="description">Comment</label>
                         <div class="input-animate">
                           <textarea id="description" rows="1" class="form-control" formControlName="description" placeholder="Comment" minlength="2" required></textarea>
-                          <span class="focus-border"><i></i></span>
-                          <control-messages *ngIf="isNoteFormSubmoted" [control]="noteForm.get('description')"></control-messages>
                         </div>  
+                        <control-messages *ngIf="isNoteFormSubmoted" [control]="noteForm.get('description')"></control-messages>
                       </div>              
                       <div class="form-group col-6 col-md-6">
                           <label for="target_buy_price">Target Price</label>
                           <div class="input-animate">
                             <input id="target_buy_price" type="number" class="form-control" formControlName="target_buy_price" placeholder="Price" min="0" required/>
-                            <span class="focus-border"><i></i></span>
-                            <control-messages *ngIf="isNoteFormSubmoted" [control]="noteForm.get('target_buy_price')"></control-messages>
-                          </div>                   
+                          </div>     
+                          <control-messages *ngIf="isNoteFormSubmoted" [control]="noteForm.get('target_buy_price')"></control-messages>              
                         </div>
                         </div>
                       <div class="form-group text-right">

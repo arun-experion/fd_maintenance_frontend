@@ -282,7 +282,7 @@
                       X
                     </p>
                     <h3 class="text-dark">Market Intel</h3><hr>
-                    <div class="overflow-auto mb-3 pr-3" style="min-height: 250px text-center">
+                    <div class="overflow-auto mb-3 pr-3 pl-3" style="min-height: 250px text-center">
                     <form *ngIf="userid !== undefined" class="form-horizontal" [formGroup]="noteForm" (ngSubmit)="onSubmitNoteForm()">
                       <div class="form-group">
                           <div class="input-animate">
@@ -427,7 +427,7 @@
                       <!-- <img src="assets/images/footer-logo.png"                                   alt="" class="footerLogPlaceHolder p-0 mr-3 border">  -->
                     </a>
                     <a
-                      (click)="open(content)"
+                      (click)="open(content,'')"
                       class="cur-pointer col d-flex align-items-start"
                       style="height: 30px"
                     >

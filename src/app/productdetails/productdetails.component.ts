@@ -22,7 +22,9 @@ import { CompareService } from '../services/compare.service';
 })
 export class ProductdetailsComponent implements OnInit {
   ProductId: number;
+  private cartAPI = CARTAPI;
   productData: any = [];
+  casrtItemQty:any=[];
   productDetail: any = {};
   nextPageUrl: string = '';
   brandId: number = 0;
@@ -41,7 +43,6 @@ export class ProductdetailsComponent implements OnInit {
   interStateQuantity = 0;
   isPriceVisible = false;
   @Input() visible = false;
-  private cartAPI = CARTAPI;
   private state = {
     "ACT": "ACT Silo",
     "NSW": "NSW Branch",
@@ -56,6 +57,7 @@ export class ProductdetailsComponent implements OnInit {
   isLow: boolean;
 
   constructor(
+    
     private route: ActivatedRoute,
     private Productlist: ProductlistService,
     private $apiSer: ApiService,
@@ -153,11 +155,21 @@ export class ProductdetailsComponent implements OnInit {
       }
     });
   }
-
+  getCart() {
+    this.$apiSer.get(`${this.cartAPI}/items`).subscribe(res => {
+      if (res.success) {
+        res.data.items.forEach(el => {
+          const { product_id, qty } = el;
+          this.casrtItemQty.push(qty);
+        });
+      }
+    }, error => console.log(error), () => { });
+  }
   ngOnInit() {
-
     this.ProductId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.getProductDetail();
+    this.getCart();
+    this.Productlist.getCartItems();
     this.showPrice.setPriceChangeDisabled(false);
     this.showPrice.isPriceVisible.subscribe(res => {
       this.isPriceVisible = res;
@@ -217,7 +229,7 @@ export class ProductdetailsComponent implements OnInit {
       });
 
   }
-
+ 
   addToCart(objProduct) {
     const { id: product_id, addToCart: isItInTheCart, quantity: qty } = objProduct;
     if (!isItInTheCart) {

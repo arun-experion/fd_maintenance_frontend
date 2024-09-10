@@ -10,8 +10,8 @@
               <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
                 <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
                   <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
-                    <app-zoom [img]="img.image_url" [zoom]="8" [lenSize]="50" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
-                    <app-zoom [img]="img.image_url" [zoom]="2" [lenSize]="80" class="d-md-block d-none d-lg-none w-100" [divZoomed]="divZoomed2"></app-zoom>
+                    <app-zoom [img]="img.image_url" [zoom]="8" [lenSize]="50" [customBackgroundSize]="'1420px 1420px'" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
+                    <app-zoom [img]="img.image_url" [zoom]="2" [lenSize]="80" [customBackgroundSize]="'1000px 1000px'" class="d-md-block d-none d-lg-none w-100" [divZoomed]="divZoomed2"></app-zoom>
                   </div>
                 </div>
               </div>
@@ -157,50 +157,50 @@
             </div>
             <div class="col-lg-5">
                 <h3 class=" column-heading text-dark"> Market Intel</h3><hr class="market_intel_line">
-                <div class="competitor_details">
+                <div class="competitor_details" >
                     <div class="row">
                   <div class="col-lg-5 col-md-5 col-5">Cross Ref</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
 
-                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes.length != 0">
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0">
                     <span class="h5 text-dark">{{ productDetail.notes[0].cross_ref }}</span>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-5 col-md-5 col-5"> Cross Ref Buy Price</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].crossref_buy_price ? ('$' + productDetail.notes[0].crossref_buy_price) : null }}
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0" >{{ productDetail.notes[0].crossref_buy_price ? ('$' + productDetail.notes[0].crossref_buy_price) : null }}
                 </div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5">Grade</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6">{{ productDetail.notes[0].grades }}</div>
+                  <div class="col-lg-6 col-md-6 col-6" *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].grades }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5">Delivery Time</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].delivery_time }}</div>
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].delivery_time }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5">Add to Range</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].add_to_range }}</div>
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].add_to_range }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5"> Hold Stock</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].hold_stock }}</div>
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].hold_stock }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5"> Target Buy Price</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6">{{ productDetail.notes[0].target_buy_price ? ('$' + productDetail.notes[0].target_buy_price) : null }}</div>
+                  <div class="col-lg-6 col-md-6 col-6" *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].target_buy_price ? ('$' + productDetail.notes[0].target_buy_price) : null }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5"> Comments</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6">{{ productDetail.notes[0].description }}</div>
+                  <div class="col-lg-6 col-md-6 col-6" *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].description }}</div>
                   </div>
                 </div>               
                 <form *ngIf="userid !== undefined" class="form-horizontal" [formGroup]="noteForm" (ngSubmit)="onSubmitNoteForm()">

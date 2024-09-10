@@ -29,6 +29,7 @@ export class ZoomComponent {
     @Input() imgWidth;
     @Input() imgHeigth;
     @Input() divZoomed:ElementRef
+    @Input() customBackgroundSize: string;
 
     posX:number=0;
     posY:number=0;
@@ -51,30 +52,29 @@ export class ZoomComponent {
     }
 
     constructor(private render:Renderer2){}
-    onLoad()
-    {
-        this.render.setStyle(this.divZoomed,'background-image',"url('" + this.imagen+ "')");
-        this.render.setStyle(this.divZoomed,'background-size',(this.img.nativeElement.width * this.zoom) + "px " + (this.img.nativeElement.height * this.zoom) + "px")
-        this.render.setStyle(this.divZoomed,'background-repeat', 'no-repeat')
-        this.render.setStyle(this.divZoomed,'transition','background-position .2s ease-out');
-        this.factorX=this.img.nativeElement.width;
-        this.factorY=this.img.nativeElement.height;
-
-        this.yet=true;
-        setTimeout(()=>{
-            this.factorX=this.imgWidth || this.imgHeigth?this.factorX/this.img.nativeElement.width:1
-            this.factorY=this.imgWidth || this.imgHeigth?this.factorY/this.img.nativeElement.height:1
-            const dim=(this.divZoomed as any).getBoundingClientRect()
-            this.cx=(dim.width-this.img.nativeElement.width*this.zoom*this.factorX)/(this.img.nativeElement.width - this.lens.nativeElement.offsetWidth);
-            this.cy=(dim.height-this.img.nativeElement.height*this.zoom*this.factorY)/(this.img.nativeElement.height -
-                this.lens.nativeElement.offsetHeight);
-
-
-
-        })
-
-
-    }
+    onLoad() {
+      this.render.setStyle(this.divZoomed, 'background-image', "url('" + this.imagen + "')");
+      
+      const defaultBackgroundSize = `${this.img.nativeElement.width * this.zoom}px ${this.img.nativeElement.height * this.zoom}px`;
+      const backgroundSize = this.customBackgroundSize || defaultBackgroundSize;
+      
+      this.render.setStyle(this.divZoomed, 'background-size', backgroundSize);
+      this.render.setStyle(this.divZoomed, 'background-repeat', 'no-repeat');
+      this.render.setStyle(this.divZoomed, 'transition', 'background-position .2s ease-out');
+      
+      this.factorX = this.img.nativeElement.width;
+      this.factorY = this.img.nativeElement.height;
+  
+      this.yet = true;
+      setTimeout(() => {
+          this.factorX = this.imgWidth || this.imgHeigth ? this.factorX / this.img.nativeElement.width : 1;
+          this.factorY = this.imgWidth || this.imgHeigth ? this.factorY / this.img.nativeElement.height : 1;
+          const dim = (this.divZoomed as any).getBoundingClientRect();
+          this.cx = (dim.width - this.img.nativeElement.width * this.zoom * this.factorX) / (this.img.nativeElement.width - this.lens.nativeElement.offsetWidth);
+          this.cy = (dim.height - this.img.nativeElement.height * this.zoom * this.factorY) / (this.img.nativeElement.height - this.lens.nativeElement.offsetHeight);
+      });
+  }
+  
     moveLens(e:any)
     {
         let pos

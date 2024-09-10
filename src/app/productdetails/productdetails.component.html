@@ -10,7 +10,7 @@
               <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
                 <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
                   <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
-                    <app-zoom [img]="img.image_url" [zoom]="10" [lenSize]="70" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
+                    <app-zoom [img]="img.image_url" [zoom]="8" [lenSize]="50" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
                     <app-zoom [img]="img.image_url" [zoom]="2" [lenSize]="80" class="d-md-block d-none d-lg-none w-100" [divZoomed]="divZoomed2"></app-zoom>
                   </div>
                 </div>
@@ -19,7 +19,7 @@
                 <img src="assets/images/footer-logo.png" class="rounded-circle footerLogPlaceHolder">
               </div>
        
-              <div class="col-3 pl-2 pr-2" *ngIf="ProductImages">
+              <div class="thumbnail-image col-3 pl-2 pr-2" *ngIf="ProductImages">
                 <ul class="list-unstyled d-inline carousel-indicators position-relative m-0">
                   <li *ngFor="let img of ProductImages" data-target="#product-1" data-slide-to="0" class="mb-2 border h-auto w-auto" (click)="selectImage(img)" [ngClass]="{'active': img == selectedProductImage}">
                     <img src="{{img.image_url}}" class="" alt="...">
@@ -139,7 +139,7 @@
                                         class="flaticon-plus-symbol"></i></button>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-order col-5"
+                        <button type="button" class="btn btn-primary btn-order col-5 text-nowrap"
                             (click)="addToCart(productDetail);">Add to Order</button>
                         <div class="custom-control custom-checkbox mt-2" *ngIf="productDetail.is_compare != undefined"
                             (click)="onCompareChange(productDetail)">
@@ -163,45 +163,45 @@
                   <div class="col-lg-5 col-md-5 col-5">Cross Ref</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
 
-                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes.length != 0">
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0">
                     <span class="h5 text-dark">{{ productDetail.notes[0].cross_ref }}</span>
                   </div>
-                </div>
-                <div class="row">
+                  </div>
+                  <div class="row">
                   <div class="col-lg-5 col-md-5 col-5"> Cross Ref Buy Price</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].crossref_buy_price ? ('$' + productDetail.notes[0].crossref_buy_price) : null }}
-                </div>
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].crossref_buy_price ? ('$' + productDetail.notes[0].crossref_buy_price) : null }}
+                  </div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5">Grade</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6">{{ productDetail.notes[0].grades }}</div>
+                  <div class="col-lg-6 col-md-6 col-6" *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].grades }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5">Delivery Time</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].delivery_time }}</div>
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].delivery_time }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5">Add to Range</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].add_to_range }}</div>
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].add_to_range }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5"> Hold Stock</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6 ">{{ productDetail.notes[0].hold_stock }}</div>
+                  <div class="col-lg-6 col-md-6 col-6 " *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].hold_stock }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5"> Target Buy Price</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6">{{ productDetail.notes[0].target_buy_price ? ('$' + productDetail.notes[0].target_buy_price) : null }}</div>
+                  <div class="col-lg-6 col-md-6 col-6" *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].target_buy_price ? ('$' + productDetail.notes[0].target_buy_price) : null }}</div>
                   </div>
                   <div class="row">
                   <div class="col-lg-5 col-md-5 col-5"> Comments</div>
                   <div class="col-lg-1 col-md-1 col-1"> :</div>
-                  <div class="col-lg-6 col-md-6 col-6">{{ productDetail.notes[0].description }}</div>
+                  <div class="col-lg-6 col-md-6 col-6" *ngIf="productDetail.notes && productDetail.notes.length > 0">{{ productDetail.notes[0].description }}</div>
                   </div>
                 </div>               
                 <form *ngIf="userid !== undefined" class="form-horizontal" [formGroup]="noteForm" (ngSubmit)="onSubmitNoteForm()">

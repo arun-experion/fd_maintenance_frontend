@@ -226,7 +226,7 @@ form{
         font-size: 24.8px;
     }
 }
-@media (max-width: 1400px) and (min-width:2500px){
+@media (min-width: 1400px) and (max-width:2500px){
     .add_to_range_label {
         margin-right: 0;
     }
@@ -234,6 +234,9 @@ form{
     {
         margin-top: 42px;
         margin-left: -96px;
+    }
+    .thumbnail-image{
+        height: 100px;
     }
     .hold_stock_radiobox1{
         padding: auto;

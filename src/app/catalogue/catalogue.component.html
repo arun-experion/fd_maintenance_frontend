@@ -318,7 +318,7 @@
                               <option value="" selected>Select </option>
                               <option value="Performance">Performance</option>
                               <option value="OEM Spec">OEM Spec</option>
-                              <option value="Generic">Generic</option>
+                              <option value="General">General</option>
                             </select>
                           </div>
                           <control-messages *ngIf="isNoteFormSubmoted" [control]="noteForm.get('grades')"></control-messages>
@@ -328,9 +328,9 @@
                           <div class="input-animate">
                             <select id="delivery_time"class="form-control" formControlName="delivery_time" required>
                               <option value="" selected>Select</option>
-                              <option value="30 Minutes">30 Minutes</option>               
-                              <option value="2 Hours">2 Hours</option>
-                              <option value="Overnight">Overnight</option>               
+                              <option value="Stock Locally">Stock Locally</option>               
+                              <option value="Intrastate"> Intrastate</option>
+                              <option value="Interstate">Interstate</option>                
                            </select>
                           </div>
                           <control-messages *ngIf="isNoteFormSubmoted" [control]="noteForm.get('delivery_time')"></control-messages>

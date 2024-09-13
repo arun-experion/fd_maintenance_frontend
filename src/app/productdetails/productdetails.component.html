@@ -101,7 +101,7 @@
                 <div class="d-flex flex-row align-items-top row">
                     <div class="col-sm-4 col-4" *ngIf="isPriceVisible == true">
                         <h2 class="mt-1 mb-3">{{productDetail.price_nett | currency: 'USD': 'symbol': '1.2-2'}}</h2>
-                        <p class="text-muted">Retail Price: {{productDetail.price_retail | currency: 'USD': 'symbol': '1.2-2'}}</p>
+                        <p class="text-muted">Trade Price: {{productDetail.price_retail | currency: 'USD': 'symbol': '1.2-2'}}</p>
                         <p class="mb-0">
                           Delivery:
                           <span *ngIf="availableIntraState">Same Day</span> 
@@ -242,7 +242,7 @@
                         <option value="" selected>Select </option>
                         <option value="Performance">Performance</option>
                         <option value="OEM Spec">OEM Spec</option>
-                        <option value="Generic">Generic</option>
+                        <option value="General">General</option>
                       </select>
                       <span class="focus-border"><i></i></span>
                     </div>
@@ -253,9 +253,9 @@
                     <div class="input-animate">
                       <select id="delivery_time"class="form-control" formControlName="delivery_time" required>
                         <option value="" selected>Select</option>
-                        <option value="30 Minutes">30 Minutes</option>               
-                        <option value="2 Hours">2 Hours</option>
-                        <option value="Overnight">Overnight</option>               
+                        <option value="Stock Locally">Stock Locally</option>               
+                        <option value="Intrastate">Intrastate</option>
+                        <option value="Interstate">Interstate</option>            
                      </select>
                       <span class="focus-border"><i></i></span>
                     </div>

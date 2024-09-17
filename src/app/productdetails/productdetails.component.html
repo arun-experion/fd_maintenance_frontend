@@ -10,7 +10,7 @@
               <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
                 <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
                   <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
-                    <app-zoom [img]="img.image_url" [zoom]="8.4" [lenSize]="50" [customBackgroundSize]="'1500px 1400px'" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
+                    <app-zoom [img]="img.image_url" [zoom]="8" [lenSize]="50" [customBackgroundSize]="'1500px 1400px'" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
                     <app-zoom [img]="img.image_url" [zoom]="2" [lenSize]="80" [customBackgroundSize]="'1000px 1000px'" class="d-md-block d-none d-lg-none w-100" [divZoomed]="divZoomed2"></app-zoom>
                   </div>
                 </div>
@@ -101,7 +101,7 @@
                 <div class="d-flex flex-row align-items-top row">
                     <div class="col-sm-4 col-4" *ngIf="isPriceVisible == true">
                         <h2 class="mt-1 mb-3">{{productDetail.price_nett | currency: 'USD': 'symbol': '1.2-2'}}</h2>
-                        <p class="text-muted">Retail Price: {{productDetail.price_retail | currency: 'USD': 'symbol': '1.2-2'}}</p>
+                        <p class="text-muted">Trade Price: {{productDetail.price_retail | currency: 'USD': 'symbol': '1.2-2'}}</p>
                         <p class="mb-0">
                           Delivery:
                           <span *ngIf="availableIntraState">Same Day</span> 
@@ -242,7 +242,7 @@
                         <option value="" selected>Select </option>
                         <option value="Performance">Performance</option>
                         <option value="OEM Spec">OEM Spec</option>
-                        <option value="Generic">Generic</option>
+                        <option value="General">General</option>
                       </select>
                       <span class="focus-border"><i></i></span>
                     </div>
@@ -253,9 +253,9 @@
                     <div class="input-animate">
                       <select id="delivery_time"class="form-control" formControlName="delivery_time" required>
                         <option value="" selected>Select</option>
-                        <option value="30 Minutes">30 Minutes</option>               
-                        <option value="2 Hours">2 Hours</option>
-                        <option value="Overnight">Overnight</option>               
+                        <option value="Stock Locally">Stock Locally</option>               
+                        <option value="Intrastate">Intrastate</option>
+                        <option value="Interstate">Interstate</option>            
                      </select>
                       <span class="focus-border"><i></i></span>
                     </div>

@@ -9,15 +9,15 @@
 .quantity-block{
     padding-right: 0px;
 }
+.associated_parts_table{
+    padding-right: 1px;
+}
 @media (min-width: 1400px) and (max-width:2500px){
 .part_number{
     padding-left: 0px;
 }
 .part_number_values{
     padding-left: 0px;
-}
-.associated_parts_table{
-    min-width: 1280px;
 }
 .buttons{
     padding-right: 0px;

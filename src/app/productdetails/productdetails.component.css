@@ -134,12 +134,6 @@ margin: 0px;
       .market_intel_line{
     max-width: 500px;
   }
-    form{
-        min-width: 503px;
-    }
-    .competitor_details{
-        min-width: 498px;
-    }
     .back_to_search{
         position: absolute;
         bottom: 0px;

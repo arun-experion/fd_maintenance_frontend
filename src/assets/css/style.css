@@ -48,19 +48,6 @@ img {
     max-width: 1240px;
   }
 }
-
-@media (min-width: 1400px) and (max-resolution: 100dpi) {
-    .associated_parts_table {
-        margin-left: 328px;
-        max-width: 1280px;
-    }
-    }
-@media (min-width: 1400px) and (min-resolution: 120dpi) and (max-resolution: 144dpi) {
-      .associated_parts_table {
-          margin-left: 138px;
-          max-width: 1200px;
-      }
-      }
 .card {
   border-radius: 0.5rem;
 }

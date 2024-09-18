@@ -7,12 +7,12 @@
             <thead>
                 <tr>
                     <th scope="col" colspan="2" class="part_number_values">Part Number(s) & Name</th>
-                    <th scope="col">Vehicle</th>
-                    <th scope="col" *ngIf="isPriceVisible == true">Price</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Delivered By</th>
-                    <th scope="col">&nbsp;</th>
-                    <th scope="col">&nbsp;</th>
+                    <th scope="col" colspan="1">Vehicle</th>
+                    <th scope="col" *ngIf="isPriceVisible == true" colspan="1">Price</th>
+                    <th scope="col" colspan="1">Stock</th>
+                    <th scope="col" colspan="1">Delivered By</th>
+                    <th scope="col" colspan="1">&nbsp;</th>
+                    <th scope="col" colspan="1">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +38,8 @@
                             </div>
                         </div>
                     </td>
-                    <td>
+                    <td  style="width: 260px;">
+                        <div class="font-weight-bold">{{part.brand.name}}</div>
                         <div class="font-weight-bold">{{part.brand.name}}</div>
                         <div>{{part.description}}</div>
                     </td>

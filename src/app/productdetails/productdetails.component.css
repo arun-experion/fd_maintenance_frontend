@@ -122,6 +122,14 @@ margin: 0px;
     padding-right: 15px;
     padding-left: 15px;
 }
+.vertical-line {
+    position: absolute;
+            top: 50px;
+            bottom: 0;
+            right: 0; 
+            width: 1px; 
+            background-color: #dee2e6; 
+}
 @media (min-width: 1400px) and (max-width:2500px){
     .additional-information{
          width: 210px;
@@ -134,6 +142,7 @@ margin: 0px;
       .market_intel_line{
     max-width: 500px;
   }
+
     .back_to_search{
         position: absolute;
         bottom: 0px;

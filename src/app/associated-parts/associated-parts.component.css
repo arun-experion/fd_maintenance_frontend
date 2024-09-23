@@ -2,7 +2,9 @@
     color: #333;
     font-size: 14px;
 }
-
+.associated_parts_line{
+    margin-top: 0px;
+}
 .associatedParts th {
     border: 0;
 }

@@ -27,7 +27,6 @@
                 </ul>
               </div>
             </div>
-            </div>         
             <div class="additional-information d-none d-sm-block">
               <div [ngClass]="{'d-md-block d-none d-lg-none': true, 'low-opacity': isLow}"  #divZoomed2 class="img-zoom-result"></div>             
               <div class="row mt-2 d-flex flex-row">
@@ -48,6 +47,8 @@
                 <div class="col-sm-6 col-6">{{criteria.criteria_name}}</div>
                 <div class="col-sm-6 col-6">{{criteria.criteria_value}}</div>
               </div>
+            </div>
+            <div class="vertical-line d-none d-lg-block"></div>         
             </div>
           </div>
           <div class="additional-information-mobile d-lg-none d-md-none">
@@ -82,7 +83,7 @@
               <div class="col-sm-6 col-6">{{criteria.criteria_value}}</div>
             </div>
           </div>
-            <div class="col-lg-4">
+           <div class="col-lg-4">
                 <h3 class="column-heading text-dark order_label"> Ordering</h3><hr class="ordering_line">
                 <div [ngClass]="{'d-lg-block d-none': true,'low-opacity': isLow}"  #divZoomed class="img-zoom-result"></div>             
                 <div class="d-flex flex-row align-items-top row">
@@ -154,6 +155,7 @@
                             Search</button>
                     </div>
                 </div>
+                <div class="vertical-line d-none d-lg-block"></div>   
             </div>
             <div class="col-lg-5">
                 <h3 class=" column-heading text-dark"> Market Intel</h3><hr class="market_intel_line">

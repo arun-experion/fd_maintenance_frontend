@@ -14,6 +14,7 @@ import {
 import { Location } from '@angular/common';
 import { ShowPriceService } from '../services/show-price.service';
 import { CompareService } from '../services/compare.service';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-productdetails',
@@ -41,6 +42,7 @@ export class ProductdetailsComponent implements OnInit {
   interStateQuantity = 0;
   isPriceVisible = false;
   @Input() visible = false;
+  isClicked: boolean = false;
   private cartAPI = CARTAPI;
   private state = {
     "ACT": "ACT Silo",
@@ -64,7 +66,8 @@ export class ProductdetailsComponent implements OnInit {
     private authServ: AuthenticationService,
     private location: Location,
     private showPrice: ShowPriceService,
-    private comSer: CompareService
+    private comSer: CompareService,
+    private modal: NgbModal
   ) {
     this.authServ.currentUser.subscribe(user => {
       if (user) {
@@ -286,7 +289,15 @@ export class ProductdetailsComponent implements OnInit {
   changeVisible($event) {
     this.visible = $event;
   }
-
+  open(content,size) { 
+    setTimeout(() => {
+      const modalWindow: HTMLElement | null = document.querySelector('ngb-modal-window');
+      if (modalWindow) {
+        modalWindow.style.marginTop = '100px';
+      }
+    }, 0);   
+    this.modal.open(content, {ariaLabelledBy: 'modal-basic-title', size:size});  
+  }
   back() {
     this.location.back();
   }
@@ -302,4 +313,5 @@ export class ProductdetailsComponent implements OnInit {
   hidePreview() {
     this.isLow = true;
   }
+  
 }

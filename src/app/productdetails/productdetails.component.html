@@ -9,14 +9,24 @@
             <div class="carousel slide d-flex h-50" id="product-1" data-ride="carousel" data-interval="false">
               <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
                 <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
-                  <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
+                  <div (mouseover)="showPreview()" (mouseout)="hidePreview()"(click)="open(available,'xl')">
                     <app-zoom [img]="img.image_url" [zoom]="8" [lenSize]="50" [customBackgroundSize]="'1500px 1400px'" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
                     <app-zoom [img]="img.image_url" [zoom]="2" [lenSize]="80" [customBackgroundSize]="'1000px 1000px'" class="d-md-block d-none d-lg-none w-100" [divZoomed]="divZoomed2"></app-zoom>
+                    <ng-template #available let-modal>
+                      <div class="d-none d-md-block">
+                       <div class="modal-content modal-body catalogue-v-l d-flex justify-content-center align-items-center"  [ngStyle]="{'height': '750px'}">
+                        <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="position: absolute; top: 10px; right: 20px">
+                          X
+                        </p>
+                        <img src="{{img.image_url}}">
+                       </div>
+                      </div>
+                    </ng-template>
                   </div>
                 </div>
               </div>
               <div *ngIf="!ProductImages || ProductImages.length == 0" class="carousel-inner col rounded-0 img-thumbnail d-flex justify-content-center">
-                <img src="assets/images/footer-logo.png" class="rounded-circle footerLogPlaceHolder">
+              <img src="assets/images/footer-logo.png" class="rounded-circle footerLogPlaceHolder">          
               </div>
        
               <div class="thumbnail-image col-3 pl-2 pr-2" *ngIf="ProductImages">
@@ -57,7 +67,15 @@
                 <div class="col-4" *ngFor="let img of ProductImages; let i = index">
                   <ul class="list-unstyled d-inline position-relative m-0">
                     <li data-target="#product-1" [attr.data-slide-to]="i" class="mb-2 border h-auto w-auto" (click)="selectImage(img)" [ngClass]="{'active': img == selectedProductImage}">
-                      <img [src]="img.image_url" alt="...">
+                      <img [src]="img.image_url" alt="..." (click)="open(available,'')">
+                      <ng-template #available let-modal>
+                         <div class="modal-content modal-body catalogue-v-l d-flex justify-content-center align-items-center">
+                          <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="position: absolute; top: 10px; right: 20px">
+                            X
+                          </p>
+                          <img src="{{img.image_url}}">
+                         </div>
+                      </ng-template>
                     </li>
                   </ul>
                 </div>
@@ -146,10 +164,10 @@
                                 [checked]="productDetail.is_compare == 0 ? false : true">
                             <label class="custom-control-label" for="compareCheck1">Compare</label>
                         </div>
-                        <button (click)="back()" class="btn btn-outline-secondary btn-order btn-long my-3 col-7 d-lg-none d-md-block ml-auto text-nowrap mr-2">Back to
+                        <button (click)="back()" class="btn btn-outline-secondary btn-order btn-long my-3 col-7 d-lg-none d-md-block ml-auto text-nowrap">Back to
                           Search</button>
                     </div>
-                    <div class="back_to_search  d-none d-lg-block ml-auto mr-2">
+                    <div class="back_to_search  d-none d-lg-block ml-auto">
                         <button (click)="back()" class="btn btn-outline-secondary btn-order btn-long my-3 text-nowrap">Back to
                             Search</button>
                     </div>

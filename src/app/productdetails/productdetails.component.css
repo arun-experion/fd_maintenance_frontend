@@ -51,9 +51,9 @@
 hr{
     width: 110%;
 }
-.carousel-inner{
+/* .carousel-inner{
     height: 300px;
-}
+} */
 .carousel{
     max-height: 95%;
 }
@@ -138,6 +138,9 @@ margin: 0px;
         margin-top: -6px;
         padding-left: 10px;
         padding-bottom: 170px;
+    }
+    .carousel-inner{
+        height: 300px;
     }
       .market_intel_line{
     max-width: 500px;

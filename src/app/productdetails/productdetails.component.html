@@ -9,16 +9,15 @@
             <div class="carousel slide d-flex h-50" id="product-1" data-ride="carousel" data-interval="false">
               <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
                 <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
-                  <div (mouseover)="showPreview()" (mouseout)="hidePreview()"(click)="open(available,'xl')">
-                    <app-zoom [img]="img.image_url" [zoom]="8" [lenSize]="50" [customBackgroundSize]="'1500px 1400px'" class="d-lg-block d-none w-100" [divZoomed]="divZoomed"></app-zoom>
-                    <app-zoom [img]="img.image_url" [zoom]="2" [lenSize]="80" [customBackgroundSize]="'1000px 1000px'" class="d-md-block d-none d-lg-none w-100" [divZoomed]="divZoomed2"></app-zoom>
-                    <ng-template #available let-modal>
+                  <div (click)="open(available,'xl')">
+                    <img [src]="img.image_url" alt="Selected Image" class="w-100" style="cursor: pointer;"/>
+                    <ng-template  #available let-modal>
                       <div class="d-none d-md-block">
-                       <div class="modal-content modal-body catalogue-v-l d-flex justify-content-center align-items-center"  [ngStyle]="{'height': '750px'}">
-                        <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="position: absolute; top: 10px; right: 20px">
+                       <div class="modal-content modal-body catalogue-v-l d-flex justify-content-center align-items-center" >
+                        <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="position: absolute; top: 10px; right: 20px;cursor: pointer;">
                           X
                         </p>
-                        <img src="{{img.image_url}}">
+                        <img class="modal_img w-100" src="{{img.image_url}}">
                        </div>
                       </div>
                     </ng-template>
@@ -31,7 +30,7 @@
        
               <div class="thumbnail-image col-3 pl-2 pr-2" *ngIf="ProductImages">
                 <ul class="list-unstyled d-inline carousel-indicators position-relative m-0">
-                  <li *ngFor="let img of ProductImages" data-target="#product-1" data-slide-to="0" class="mb-2 border h-auto w-auto" (click)="selectImage(img)" [ngClass]="{'active': img == selectedProductImage}">
+                  <li *ngFor="let img of ProductImages" data-target="#product" data-slide-to="0" class="mb-2 border h-auto w-auto" (click)="selectImage(img)" [ngClass]="{'active': img == selectedProductImage}">
                     <img src="{{img.image_url}}" class="" alt="...">
                   </li>
                 </ul>

@@ -52,7 +52,7 @@
                 <div class="col-sm-6 col-6">Weight (G)</div>
                 <div class="col-sm-6 col-6">{{productDetail.weight}}</div>
               </div>
-              <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="text-center font-weight-bold mt-2 " >             
+              <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="font-weight-bold text-primary mt-2 " >             
                  <p class="associated_parts_link" (click)="scrollToAssociatedParts()" style="cursor: pointer;"> Associated Parts</p>
               </div>
               <div class="row d-flex flex-row" *ngFor="let criteria of productDetail.criteria">
@@ -97,9 +97,9 @@
               <div class="col-sm-6 col-6">Weight (G)</div>
               <div class="col-sm-6 col-6">{{productDetail.weight}}</div>
             </div>
-            <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="text-center font-weight-bold mt-2 ">             
+            <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="font-weight-bold text-primary mt-2 " >             
               <p class="associated_parts_link" (click)="scrollToAssociatedParts()" style="cursor: pointer;"> Associated Parts</p>
-            </div>
+           </div>
             <div class="row d-flex flex-row" *ngFor="let criteria of productDetail.criteria">
               <div class="col-sm-6 col-6">{{criteria.criteria_name}}</div>
               <div class="col-sm-6 col-6">{{criteria.criteria_value}}</div>

@@ -117,6 +117,7 @@ export class ProductdetailsComponent implements OnInit {
     });
     this.isLow = true;
   }
+  
 
   onSubmitNoteForm() {
     this.isNoteFormSubmoted = true;
@@ -313,5 +314,10 @@ export class ProductdetailsComponent implements OnInit {
   hidePreview() {
     this.isLow = true;
   }
-  
+  scrollToAssociatedParts(): void {
+    const targetElement = document.getElementById('associated_parts');
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

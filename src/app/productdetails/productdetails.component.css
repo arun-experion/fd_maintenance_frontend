@@ -136,6 +136,11 @@ margin: 0px;
 .modal_img{
     max-width: 500px;
 }
+.associated_parts_link{
+    text-decoration: underline;
+    color: rgb(20, 59, 165);
+    margin-right: 15px;
+}
 @media (min-width: 1400px) and (max-width:2500px){
     .additional-information{
          width: 210px;

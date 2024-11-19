@@ -10,14 +10,14 @@
               <div *ngIf="ProductImages && ProductImages.length != 0" class="carousel-inner col rounded-0 img-thumbnail">
                 <div *ngFor="let img of ProductImages" class="carousel-item" [ngClass]="{'active': img == selectedProductImage}">
                   <div (click)="open(available,'xl')">
-                    <img [src]="img.image_url" alt="Selected Image" class="w-100" style="cursor: pointer;"/>
+                    <img [src]="img.image_url" alt="..." class="w-100" style="cursor: pointer;"/>
                     <ng-template  #available let-modal>
                       <div class="d-none d-md-block">
                        <div class="modal-content modal-body catalogue-v-l d-flex justify-content-center align-items-center" >
                         <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="position: absolute; top: 10px; right: 20px;cursor: pointer;">
                           X
                         </p>
-                        <img class="modal_img w-100" src="{{img.image_url}}">
+                        <img class="modal_img w-100" src="{{img.image_url}}" alt="...">
                        </div>
                       </div>
                     </ng-template>
@@ -51,6 +51,9 @@
                 <div class="col-sm-6 col-6">{{productDetail.thickness}}</div>
                 <div class="col-sm-6 col-6">Weight (G)</div>
                 <div class="col-sm-6 col-6">{{productDetail.weight}}</div>
+              </div>
+              <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="font-weight-bold text-primary mt-2 " >             
+                 <p class="associated_parts_link" (click)="scrollToAssociatedParts()" style="cursor: pointer;"> Associated Parts</p>
               </div>
               <div class="row d-flex flex-row" *ngFor="let criteria of productDetail.criteria">
                 <div class="col-sm-6 col-6">{{criteria.criteria_name}}</div>
@@ -94,6 +97,9 @@
               <div class="col-sm-6 col-6">Weight (G)</div>
               <div class="col-sm-6 col-6">{{productDetail.weight}}</div>
             </div>
+            <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="font-weight-bold text-primary mt-2 " >             
+              <p class="associated_parts_link" (click)="scrollToAssociatedParts()" style="cursor: pointer;"> Associated Parts</p>
+           </div>
             <div class="row d-flex flex-row" *ngFor="let criteria of productDetail.criteria">
               <div class="col-sm-6 col-6">{{criteria.criteria_name}}</div>
               <div class="col-sm-6 col-6">{{criteria.criteria_value}}</div>
@@ -345,7 +351,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fuild bg-gray">
+    <div class="container-fuild bg-gray" id="associated_parts">
         <app-associated-parts *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" [parts]="productDetail.associated_parts"></app-associated-parts>         
     </div>
 </main>

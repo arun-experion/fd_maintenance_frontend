@@ -278,7 +278,7 @@
                 </ng-template>
                 <ng-template #available let-modal>
                   <div class="modal-body catalogue-v-l">
-                    <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="float: right; margin-top: -10px">
+                    <p (click)= "resetFormAndDismiss()"class="mb-0 text-muted cur-pointer" style="float: right; margin-top: -10px">
                       X
                     </p>
                     <h3 class="text-dark">Market Intel</h3><hr>
@@ -463,10 +463,11 @@
                   <div class="font-weight-bold">{{ part.brand.name }}</div>
                   <div>{{ part.description }}</div>
                 </td>
-                <td>
+                <td class="text-center">
                   <div *ngFor="let criteria of part.criteria">
                     {{ criteria.criteria_name }} : {{ criteria.criteria_value }}
                   </div>
+                  <button *ngIf="part.qty === 0" class="market-intel-button btn btn-sm btn-outline-primary mb-3 mb-3 col-12 p-2"  (click)="open(available,part.id)">Market Intel</button>
                 </td>
                 <!-- <td>
                       <div>{{part?.vehicles[0]?.make?.name}}</div>

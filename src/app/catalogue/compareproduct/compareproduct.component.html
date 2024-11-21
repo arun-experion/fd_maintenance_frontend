@@ -10,11 +10,20 @@
                 [ngClass]="(compareProductList.length <= 2)?'col-md-6 col-sm-6 col-6 d-none d-md-block':'col-md-4 col-sm-4 col-4 d-none d-md-block'">
                 <div class="carousel slide row m-0" data-ride="carousel" data-interval="false">
                     <div class="carousel-inner col-md-10 p-sm-1 rounded-0 img-thumbnail d-flex align-items-cente">
-                        <div *ngFor="let img of productDetail.images" class="carousel-item active">
-<!--                            <img src="{{img.image_url}}" alt="...">-->
-                            <div (mouseover)="showPreview()" (mouseout)="hidePreview()">
-                                <app-zoom [img]="img.image_url" [zoom]="3" [lenSize]="200"  class=" d-block w-100"  [divZoomed]="divZoomed" ></app-zoom>
-                            </div>
+                        <div  *ngIf="productDetail.images && productDetail.images.length > 0" class="carousel-item active">
+                            <div (click)="open('',available,'xl')">
+                                <img [src]="productDetail.images[0].image_url" alt="..." class="w-100" style="cursor: pointer;"/>
+                                <ng-template  #available let-modal>
+                                  <div class="d-none d-md-block">
+                                   <div class="modal-content modal-body catalogue-v-l d-flex justify-content-center align-items-center" >
+                                    <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="position: absolute; top: 10px; right: 20px;cursor: pointer;">
+                                      X
+                                    </p>
+                                    <img class="modal_img w-100" src="{{productDetail.images[0].image_url}}" alt="...">
+                                   </div>
+                                  </div>
+                                </ng-template>
+                              </div>
                         </div>
 
                         <div *ngIf="!productDetail.images || productDetail.images.length === 0"
@@ -107,9 +116,9 @@
 						{{criteria.criteria_value}}
 					</div>
 				</div>
-                <div class="mt-4 d-flex flex-row">
-                    <div class="quantity-block d-inline-block ml-0 mr-3">
-                        <div class="input-group m-0">
+                <div class="mt-4 row">
+                    <div class="quantity-block d-inline-block m-0 col-6">
+                        <div class="order_quantity input-group m-0">
                             <button type="button" class="quantity-minus btn btn-lg btn-gray btn-icon" data-type="minus"
                                 data-field="" (click)="quantityDecrement(productDetail)"><i
                                     class="flaticon-minus-symbol"></i></button>
@@ -120,7 +129,7 @@
                                     class="flaticon-plus-symbol"></i></button>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary btn-order" (click)="addToCart(productDetail);">Add to
+                    <button type="button" class="order_button btn btn-primary btn-order" (click)="addToCart(productDetail);">Add to
                         Order</button>
                 </div>
             </div>
@@ -136,26 +145,25 @@
                     <tr>
                         <th> </th>
                         <td *ngIf="compareProductList && compareProductList.length && compareProductList[0]">
-                            <img *ngIf="compareProductList[0].images && compareProductList[0].images.length === 0"
-                                src="assets/images/footer-logo.png" class="rounded-circle footerLogPlaceHolder">
                             <img *ngIf="compareProductList[0].images && compareProductList[0].images.length !== 0"
-                                src="{{compareProductList[0].images[0].image_url}}"
-                                class="rounded-circle footerLogPlaceHolder">
+                                src="{{compareProductList[0].images[0].image_url}}"  (click)="open(compareProductList[0].images[0].image_url,available,'')">
                         </td>
                         <td *ngIf="compareProductList && compareProductList.length && compareProductList[1]">
-                            <img *ngIf="compareProductList[1].images && compareProductList[1].images.length === 0"
-                                src="assets/images/footer-logo.png" class="rounded-circle footerLogPlaceHolder">
                             <img *ngIf="compareProductList[1].images && compareProductList[1].images.length !== 0"
-                                src="{{compareProductList[1].images[0].image_url}}"
-                                class="rounded-circle footerLogPlaceHolder">
+                                src="{{compareProductList[1].images[0].image_url}}"  (click)="open(compareProductList[1].images[0].image_url,available,'')">
                         </td>
                         <td *ngIf="compareProductList && compareProductList.length && compareProductList[2]">
-                            <img *ngIf="compareProductList[2].images && compareProductList[2].images.length === 0"
-                                src="assets/images/footer-logo.png" class="rounded-circle footerLogPlaceHolder">
                             <img *ngIf="compareProductList[2].images && compareProductList[2].images.length !== 0"
-                                src="{{compareProductList[2].images[0].image_url}}"
-                                class="rounded-circle footerLogPlaceHolder">
+                                src="{{compareProductList[2].images[0].image_url}}"  (click)="open(compareProductList[2].images[0].image_url,available,'')">
                         </td>
+                        <ng-template #available let-modal>
+                            <div class="modal-content modal-body catalogue-v-l d-flex justify-content-center align-items-center">
+                             <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="position: absolute; top: 10px; right: 20px">
+                               X
+                             </p>
+                             <img src="{{selectedImageSrc}}">
+                            </div>
+                         </ng-template>
                     </tr>
                     <tr>
                         <th nowrap>Part Number</th>
@@ -336,8 +344,8 @@
                                         data-type="minus" data-field=""
                                         (click)="quantityDecrement(compareProductList[1])"><i
                                             class="flaticon-minus-symbol"></i></button>
-<!--                                    <input type="text" name="quantity" class="form-control quantity-input-number"-->
-<!--                                        value="{{compareProductList[1].quantity}}" min="1" max="100">-->
+                                   <input type="text" name="quantity" class="form-control quantity-input-number"
+                                       value="{{compareProductList[1].quantity}}" min="1" max="100">
                                     <button type="button" class="quantity-plus btn btn-lg btn-gray btn-icon"
                                         data-type="plus" data-field=""
                                         (click)="quantityIncrement(compareProductList[1])"><i
@@ -356,7 +364,7 @@
                                         (click)="quantityDecrement(compareProductList[2])"><i
                                             class="flaticon-minus-symbol"></i></button>
                                     <input type="text" name="quantity" class="form-control quantity-input-number"
-                                        value="" min="1" max="100">
+                                        value="{{compareProductList[2].quantity}}" min="1" max="100">
                                     <button type="button" class="quantity-plus btn btn-lg btn-gray btn-icon"
                                         data-type="plus" data-field=""
                                         (click)="quantityIncrement(compareProductList[2])"><i

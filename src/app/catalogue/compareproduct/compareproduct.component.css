@@ -42,3 +42,34 @@
 .low-opacity{
     margin-left: -9999px;
 }
+.modal-content{
+    height: 700px;
+}
+.modal_img{
+    max-width: 500px;
+}
+@media (max-width: 991px){
+    .modal-content{
+        height: 500px;
+    }
+    .quantity-block{
+        padding-left: 0%;
+    }
+    .order_quantity{
+        width: 183%;
+    }
+    .order_button{
+        margin-top: 4%;
+        width: 80%;
+    }
+}
+@media (max-width: 576px) {
+    .modal-content{
+        height:350px;
+    }
+}
+@media(min-width:991px) and (max-width:2500px){
+    .carousel-inner{
+        min-height: 325px;
+    }
+}

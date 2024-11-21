@@ -26,6 +26,11 @@
 .quantity-block {
   max-width: 90px;
 }
+@media(min-width:992px){
+.market-intel-button{
+  min-width: 145px;
+}
+}
 @media (max-width: 550px) {
   .partsTable th,
   .partsTable td {
@@ -45,6 +50,10 @@
   .orders-col {
     display: none;
   }
+  .market-intel-button{
+    max-width: 85px;
+    padding: 0px;
+  }
 }
 @media (min-width: 650px) and (max-width: 795px) {
   .partsTable th,
@@ -54,5 +63,14 @@
   }
   .order-buttons {
     scale: 0.72;
+  }
+  .market-intel-button{
+    max-width: 90px;
+    padding: 0px;
+  }
+}
+@media (min-width:767px) and (max-width:991px){
+  .market-intel-button{
+    min-width: 85px;
   }
 }

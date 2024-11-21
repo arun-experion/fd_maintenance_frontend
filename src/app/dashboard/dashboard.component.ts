@@ -706,7 +706,7 @@ export class DashboardComponent implements OnInit {
       this.errorMessage = null;
       this.debounceTimer = setTimeout(() => {
       this.getPartNumber(inputValue);
-      },1000);
+      },500);
     } else {
       this.productId = null;  
       console.warn('No value entered.');
@@ -749,6 +749,18 @@ export class DashboardComponent implements OnInit {
         this.validateAllFormFields(control);
       }
     });
+  }
+  resetFormAndDismiss(): void {
+    this.noteForm.controls.description.setValue("");
+    this.noteForm.controls.cross_ref.setValue("");
+    this.noteForm.controls.crossref_buy_price.setValue("");
+    this.noteForm.controls.grades.setValue("");
+    this.noteForm.controls.delivery_time.setValue("");
+    this.noteForm.controls.add_to_range.setValue("Yes");
+    this.noteForm.controls.hold_stock.setValue("Yes");
+    this.noteForm.controls.target_buy_price.setValue("");
+    this.errorMessage = null; 
+    this.activeModal.dismiss('Cross click');
   }
   }
 

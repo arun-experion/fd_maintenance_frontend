@@ -297,7 +297,7 @@
 
 <ng-template #marketIntelModal let-modal>
   <div class="modal-body catalogue-v-l">
-    <p (click)="modal.dismiss('Cross click')" class="mb-0 text-muted cur-pointer" style="float: right; margin-top: -10px;cursor: pointer;">
+    <p (click)="resetFormAndDismiss()" class="mb-0 text-muted cur-pointer" style="float: right; margin-top: -10px;cursor: pointer;">
       X
     </p>
     <h3 class="text-dark">Market Intel</h3><hr>
@@ -308,6 +308,7 @@
           <label for="cross_ref">Cross Ref</label>
           <div class="input-animate">
             <input id="cross_ref" type="text" class="form-control" formControlName="cross_ref" placeholder="Enter Part Number" [ngClass]="{'is-invalid': errorMessage}" (input)="onPartNumberInput($event)" required/>
+            <span *ngIf="errorMessage" class="focus-border"><i></i></span>
         </div> 
         <control-messages *ngIf="isNoteFormSubmited" [control]="noteForm.get('cross_ref')"></control-messages>
       </div>

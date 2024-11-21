@@ -14,6 +14,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { ShowPriceService } from 'src/app/services/show-price.service';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-compareproduct',
@@ -32,6 +33,7 @@ export class CompareproductComponent implements OnInit {
   brandId = 0;
   cssclass = '';
   isPriceVisible = true;
+  selectedImageSrc: string|null = null;
 
   private cartAPI = CARTAPI;
   isLow: boolean;
@@ -40,7 +42,8 @@ export class CompareproductComponent implements OnInit {
     private $apiSer: ApiService,
     private location: Location,
     private toastr: ToastrService,
-    private showPrice: ShowPriceService
+    private showPrice: ShowPriceService,
+    private modal: NgbModal
   ) {
     this.isLow = true;
   }
@@ -131,7 +134,7 @@ export class CompareproductComponent implements OnInit {
         if (res.success) {
           objProduct.quantity = qty - 1;
           this.Productlist.updateProductList(this.productData);
-          this.toastr.success(`you have decreased quantity, which is ${qty + 1} for ${objProduct.product_nr}`);
+          this.toastr.success(`you have decreased quantity, which is ${qty - 1} for ${objProduct.product_nr}`);
         }
       }, error => console.log(error), () => {
         this.Productlist.getCartItems();
@@ -152,5 +155,16 @@ export class CompareproductComponent implements OnInit {
 
   hidePreview() {
     this.isLow = true;
+  }
+
+  open(ImageSrc,content,size) { 
+    this.selectedImageSrc = ImageSrc; 
+    setTimeout(() => {
+      const modalWindow: HTMLElement | null = document.querySelector('ngb-modal-window');
+      if (modalWindow) {
+        modalWindow.style.marginTop = '100px';
+      }
+    }, 0);   
+    this.modal.open(content, {ariaLabelledBy: 'modal-basic-title', size:size});  
   }
 }

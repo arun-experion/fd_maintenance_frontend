@@ -90,7 +90,9 @@ export class CatalogueComponent implements OnInit {
     "VIC": "Victoria Warehouse, Victoria Branch, VIC SOUTHERN DC, VIC NORTHERN DC"
   };
   ProductId: number;
-  productDetail: any = {};
+  productDetail: any = {};  
+  private activeModal: any;
+
 
   noteForm: FormGroup;
 
@@ -601,7 +603,7 @@ export class CatalogueComponent implements OnInit {
 
   open(content,partId) {
     this.selectedPartId=partId;
-    this.modal.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    this.activeModal = this.modal.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
   quantityIncrement(objProduct) {
@@ -692,4 +694,15 @@ export class CatalogueComponent implements OnInit {
     this.getAllProducts();
   }
   
+  resetFormAndDismiss(): void {
+    this.noteForm.controls.description.setValue("");
+    this.noteForm.controls.cross_ref.setValue("");
+    this.noteForm.controls.crossref_buy_price.setValue("");
+    this.noteForm.controls.grades.setValue("");
+    this.noteForm.controls.delivery_time.setValue("");
+    this.noteForm.controls.add_to_range.setValue("Yes");
+    this.noteForm.controls.hold_stock.setValue("Yes");
+    this.noteForm.controls.target_buy_price.setValue("");
+    this.activeModal.dismiss('Cross click');
+  }
 }

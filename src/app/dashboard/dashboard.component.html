@@ -274,3 +274,149 @@
         <button type="button" class="btn btn-sm btn-primary mb-3 mb-3 col-9" (click)="a('OK')">OK</button>
     </div>
 </ng-template>
+
+<ng-template #QuickSearchProdunctNotFound let-c="close" let-d="dismiss">
+  <div class="modal-header border-0 pb-0">
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body col-sm-8 col-12 text-center mx-auto">
+      <p class="my-5">Can’t find the part you’re looking for? Contact us on <a href="tel:+1300363935" class="text-primary">1300 363 735</a> and we’ll help source it for you.</p>
+      <!-- <button type="submit" class="btn btn-sm btn-primary mb-3 col-9" data-dismiss="modal">Save</button> -->
+      <div class="row justify-content-center align-items-center">
+        <div class="col-6">
+      <button type="button" class="btn btn-sm btn-primary mb-3 mb-3 col-12" (click)="c('OK')">OK</button>
+    </div>
+    <div class="col-6">
+      <button class=" market-intel-button btn btn-sm btn-outline-primary mb-3 mb-3 col-12"  (click)="openMarketIntel()">Market Intel </button>
+    </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #marketIntelModal let-modal>
+  <div class="modal-body catalogue-v-l">
+    <p (click)="resetFormAndDismiss()" class="mb-0 text-muted cur-pointer" style="float: right; margin-top: -10px;cursor: pointer;">
+      X
+    </p>
+    <h3 class="text-dark">Market Intel</h3><hr>
+    <div class="overflow-auto mb-3 pr-3 pl-3" style="min-height: 250px text-center">
+    <form *ngIf="userid !== undefined" class="form-horizontal" [formGroup]="noteForm" (ngSubmit)="onSubmitNoteForm()">
+   <div class="row">
+      <div class="form-group col-6">
+          <label for="cross_ref">Cross Ref</label>
+          <div class="input-animate">
+            <input id="cross_ref" type="text" class="form-control" formControlName="cross_ref" placeholder="Enter Part Number" (input)="onPartNumberInput($event)" required/>
+            <span *ngIf="errorMessage" class="focus-border"><i></i></span>
+        </div> 
+        <control-messages *ngIf="isNoteFormSubmited" [control]="noteForm.get('cross_ref')"></control-messages>
+      </div>
+        <div class="form-group col-6">
+          <label for="crossref_buy_price">Cross Ref Buy Price</label>
+          <div class="input-animate">
+            <input id="crossref_buy_price" type="number" class="form-control"  formControlName="crossref_buy_price"  placeholder="Enter Buy Price" min="0" required/>
+          </div>
+          <control-messages *ngIf="isNoteFormSubmited" [control]="noteForm.get('crossref_buy_price')"></control-messages>
+        </div>
+        </div>
+        <div class="row">
+        <div class="form-group col-6 ">
+          <label for="grades">Grades</label>
+          <div class="input-animate">
+            <select id="grades" class="form-control" formControlName="grades" required>
+              <option value="" selected>Select </option>
+              <option value="Performance">Performance</option>
+              <option value="OEM Spec">OEM Spec</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+          <control-messages *ngIf="isNoteFormSubmited" [control]="noteForm.get('grades')"></control-messages>
+        </div>
+        <div class="form-group col-6">
+          <label for="delivery_time">Delivery Time</label>
+          <div class="input-animate">
+            <select id="delivery_time"class="form-control"  formControlName="delivery_time" required>
+              <option value="" selected>Select</option>
+              <option value="Stock Locally">Stock Locally</option>               
+              <option value="Intrastate">Intrastate</option>
+              <option value="Interstate">Interstate</option>               
+           </select>
+          </div>
+          <control-messages *ngIf="isNoteFormSubmited" [control]="noteForm.get('delivery_time')"></control-messages>
+        </div>
+      </div>
+        <div class="row">
+      <div class="form-group col-6">
+      <label for="add_to_range" class="add_to_range_label row pl-4">Add to Range</label>
+      <div class=" add_to_range_radiobox input-animate row pl-4">
+      <div class="form-check col-6">
+      <input class="form-check-input" type="radio" name="add_to_range" id="add_to_range_yes" value="Yes"  formControlName="add_to_range" checked/>
+      <label class="form-check-label" for="add_to_range_yes"> Yes </label>
+      </div>
+      <div class="form-check col-6 ">
+          <div class="add_to_range_no_main">
+      <input class="form-check-input "type="radio" name="add_to_range" id="add_to_range_no" value="No"  formControlName="add_to_range"/>
+      <label class="form-check-label " for="add_to_range_no"> No </label>
+      </div>
+      </div>
+      <span class="focus-border"><i></i></span>
+      </div>
+      <control-messages *ngIf="isNoteFormSubmited" [control]="noteForm.get('add_to_range')"></control-messages>                     
+      </div>
+      <div class="form-group col-6" >
+      <label for="hold_stock" class="row pl-4">Hold Stock</label>
+      <div class="input-animate hold_stock_radiobox row pl-4">
+      <div class="form-check hold_stock_radiobox1 col-6">
+      <input class="form-check-input" type="radio" name="hold_stock" id="hold_stock_yes" value="Yes"  formControlName="hold_stock"  checked/>
+      <label class="form-check-label " for="hold_stock_yes"> Yes </label>
+      </div>
+      <div class="hold_stock_radiobox2 col-6">
+       <div class="hold_stock_no_main">
+      <input class="form-check-input" type="radio" name="hold_stock" id="hold_stock_no" value="No"  formControlName="hold_stock" />
+      <label class="form-check-label " for="hold_stock_no"> No </label>
+      </div>
+      </div>
+      <span class="focus-border"><i></i></span>
+      </div>
+      <control-messages *ngIf="isNoteFormSubmited" [control]="noteForm.get('hold_stock')"></control-messages>
+      </div>
+      </div>
+      <div class="row">
+      <div class="form-group col-6">
+        <label for="description">Comment</label>
+        <div class="input-animate">
+          <textarea id="description" rows="1" class="form-control"  placeholder="Comment" minlength="2" formControlName="description"  required></textarea>
+        </div>  
+        <control-messages *ngIf="isNoteFormSubmited" [control]="noteForm.get('description')"></control-messages>
+      </div>              
+      <div class="form-group col-6 col-md-6">
+          <label for="target_buy_price">Target Price</label>
+          <div class="input-animate">
+            <input id="target_buy_price" type="number" class="form-control" placeholder="Price" min="0" formControlName="target_buy_price"  required/>
+          </div> 
+          <control-messages *ngIf="isNoteFormSubmited" [control]="noteForm.get('target_buy_price')"></control-messages>                  
+        </div>
+        </div>
+      <div class="form-group text-right">
+        <button class=" save-button btn btn-outline-primary"   [disabled]="!productId "> Save Note </button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+      </div>
+      <div *ngIf="errorMessage" class="text-danger mt-2 text-center">
+        {{ errorMessage }}
+      </div>
+      <div class="form-group">
+        <div class="input-animate">
+            <input type="hidden" class="form-control" formControlName="product">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-animate">
+            <input type="hidden" class="form-control" formControlName="user_id">
+        </div>
+    </div>
+    </form>
+    </div>
+  </div>
+
+</ng-template>

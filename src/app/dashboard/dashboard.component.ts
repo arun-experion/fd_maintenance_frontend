@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { LocalStorageService } from '../local-storage.service';
 
@@ -13,13 +13,16 @@ import {
   DROPDOWNSAPI,
   MARKETINTEL,
   BANNERAPI,
-  SWIPERCONFIGINTERBANNER
+  SWIPERCONFIGINTERBANNER,
+  NOTEAPI
 } from '../constant';
 import { Util } from '../utils/util';
 import { pairwise, map, filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from '../services/authentication.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,6 +32,8 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 export class DashboardComponent implements OnInit {
   @ViewChild('searchProductNotFound', { static: false }) searchProductNotFound;
   @ViewChild('VINSearchProductNotFound', { static: false }) VINSearchProductNotFound;
+  @ViewChild('QuickSearchProdunctNotFound',{static:false})QuickSearchProdunctNotFound;
+  @ViewChild('marketIntelModal',{static:false})marketIntelModal;
 
   quickSearchForm: FormGroup;
   advanceSearchForm: FormGroup;
@@ -44,6 +49,7 @@ export class DashboardComponent implements OnInit {
   countAPI = COUNTAPI;
   searchAPI = SEARCHAPI;
   inputsAPI = DROPDOWNSAPI;
+
 
   makeList: any;
   modelList = [];
@@ -64,7 +70,16 @@ export class DashboardComponent implements OnInit {
   regoVINKey : any;
   searchResponse : any;
   regoVINSearch : any;
+  isNoteFormSubmited = false;
+  selectedPartId: number | null = null;
+  loading = false;
+  userid: any;
+  user:any;
+  productId:number|null=null;
+  errorMessage:string|null=null;
 
+  private debounceTimer: any;
+  private activeModal: any;
   private makeAPIRequest: Subscription;
   private inputsAPIRequest: Subscription;
   private countAPIRequest: Subscription;
@@ -78,6 +93,8 @@ export class DashboardComponent implements OnInit {
       return { required: true };
     }
   }
+  
+  noteForm: FormGroup;
 
   constructor(
     config: NgbModalConfig,
@@ -87,6 +104,9 @@ export class DashboardComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal,
     private localStorageService: LocalStorageService,
+    private modal: NgbModal,
+    private authSer: AuthenticationService,
+    private route: ActivatedRoute
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -116,6 +136,49 @@ export class DashboardComponent implements OnInit {
     });
 
     this.resetVehicleMakeDependantInputs();
+
+    this.authSer.currentUser.subscribe(user => {
+      this.userid = user.id;
+    });
+
+    this.noteForm = this.fb.group({
+      product: [this.route.snapshot.paramMap.get('id'), {}],
+      user_id: [this.userid, {}],
+      description: ['', {
+        validators: [
+          Validators.required,
+          Validators.minLength(2)
+        ]
+      }],
+      cross_ref: ["",{
+          validators: [Validators.required, Validators.minLength(1)],
+        },
+      ],
+      crossref_buy_price: ["",{
+          validators: [Validators.required, Validators.min(0)],
+        },
+      ],
+      grades: ["",{
+          validators: [Validators.required, Validators.minLength(1)],
+        },
+      ],
+      delivery_time: ["",{
+          validators: [Validators.required, Validators.minLength(1)],
+        },
+      ],
+      add_to_range: ["Yes",{
+          validators: [Validators.required, Validators.pattern(/^(Yes|No)$/)],
+        },
+      ],
+      hold_stock: ["Yes",{
+          validators: [Validators.required, Validators.pattern(/^(Yes|No)$/)],
+        },
+      ],
+      target_buy_price: ["",{
+          validators: [Validators.required, Validators.min(0)],
+        },
+      ]
+    });
   }
 
   selectEvent(item) {
@@ -175,7 +238,7 @@ export class DashboardComponent implements OnInit {
             this.router.navigate(['/catalogue'], { queryParams: this.quickSearchForm.value });
           } else {
             this.modalService.dismissAll();
-            this.modalService.open(this.searchProductNotFound);
+            this.activeModal = this.modalService.open(this.QuickSearchProdunctNotFound);
           }
         } else {
           this.toastr.warning(message);
@@ -344,7 +407,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getBanner();
     this.getMarketIntel();
-
     this.$apiSer.get(`${this.makeAPI}`)
       .subscribe(res => {
         if (res.success) {
@@ -391,7 +453,6 @@ export class DashboardComponent implements OnInit {
         }
       }
     );
-
   }
 
   private resetVehicleMakeDependantInputs() {
@@ -458,6 +519,21 @@ export class DashboardComponent implements OnInit {
         }
       }, error => console.log(error), () => {
       });
+  }
+
+  private getPartNumber(partNumber: string){
+  this.$apiSer.get(`${this.productsAPI}?product_nr=${partNumber}`)
+    .subscribe(res=>{
+      try{
+      if(res.success){
+        this.productId=res.data.data[0].id;
+        this.errorMessage=null;
+      }
+    }catch{
+      this.productId=null;
+      this.errorMessage = 'Part Number is not available';
+    }
+  }, error => console.log(error), () => { })
   }
 
   productNR() {
@@ -617,4 +693,75 @@ export class DashboardComponent implements OnInit {
    
   }
 
-}
+  openMarketIntel(){
+    if (this.activeModal) {
+      this.activeModal.close();
+    }   
+    this.activeModal = this.modalService.open(this.marketIntelModal);
+  }
+  onPartNumberInput(event: Event): void {
+    const crossRefControl = this.noteForm.get('cross_ref');
+    const inputValue = (event.target as HTMLInputElement).value.trim();
+    clearTimeout(this.debounceTimer);
+    if (inputValue) {
+      this.errorMessage = null;
+      this.debounceTimer = setTimeout(() => {
+      this.getPartNumber(inputValue);
+      },500);
+    } else {
+      this.productId = null;  
+      console.warn('No value entered.');
+    }
+  }
+  onSubmitNoteForm() {
+    this.isNoteFormSubmited = true;
+    this.noteForm.controls.product.setValue(this.productId);
+    if (this.noteForm.valid) {
+      this.loading = true;
+      this.$apiSer.post(`${NOTEAPI}`, this.noteForm.value).subscribe(res => {
+        if (res.success) {
+          this.toastr.success(res.message);
+          this.noteForm.controls.description.setValue("");
+          this.noteForm.controls.cross_ref.setValue("");
+          this.noteForm.controls.crossref_buy_price.setValue("");
+          this.noteForm.controls.grades.setValue("");
+          this.noteForm.controls.delivery_time.setValue("");
+          this.noteForm.controls.add_to_range.setValue("Yes");
+          this.noteForm.controls.hold_stock.setValue("Yes");
+          this.noteForm.controls.target_buy_price.setValue("");
+          this.modal.dismissAll();
+          this.isNoteFormSubmited = false;
+        } else {
+          this.toastr.warning(res.message)
+        }
+      }, error => console.log(error), () => {
+        this.loading = false;
+      });
+    } else {
+      this.validateAllFormFields(this.noteForm);
+    }
+  }
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
+  }
+  resetFormAndDismiss(): void {
+    this.noteForm.controls.description.setValue("");
+    this.noteForm.controls.cross_ref.setValue("");
+    this.noteForm.controls.crossref_buy_price.setValue("");
+    this.noteForm.controls.grades.setValue("");
+    this.noteForm.controls.delivery_time.setValue("");
+    this.noteForm.controls.add_to_range.setValue("Yes");
+    this.noteForm.controls.hold_stock.setValue("Yes");
+    this.noteForm.controls.target_buy_price.setValue("");
+    this.errorMessage = null; 
+    this.activeModal.dismiss('Cross click');
+  }
+  }
+

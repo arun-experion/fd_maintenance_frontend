@@ -29,3 +29,11 @@
     vertical-align: middle;
     left: 17px;
 }
+  .market-intel-button{
+    min-width: 135px;
+  }
+  .save-button:disabled {
+    color:  #ef5324;
+    background-color: lightgray; 
+    cursor: not-allowed; 
+  }

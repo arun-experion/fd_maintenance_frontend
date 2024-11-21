@@ -530,6 +530,7 @@ export class DashboardComponent implements OnInit {
         this.errorMessage=null;
       }
     }catch{
+      this.productId=null;
       this.errorMessage = 'Part Number is not available';
     }
   }, error => console.log(error), () => { })

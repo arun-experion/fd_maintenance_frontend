@@ -116,8 +116,8 @@
 						{{criteria.criteria_value}}
 					</div>
 				</div>
-                <div class="mt-4 row">
-                    <div class="quantity-block d-inline-block m-0 col-6">
+                <div class="mt-4 d-lg-flex flex-lg-row">
+                    <div class="quantity-block d-inline-block pl-0 col-6">
                         <div class="order_quantity input-group m-0">
                             <button type="button" class="quantity-minus btn btn-lg btn-gray btn-icon" data-type="minus"
                                 data-field="" (click)="quantityDecrement(productDetail)"><i
@@ -129,7 +129,7 @@
                                     class="flaticon-plus-symbol"></i></button>
                         </div>
                     </div>
-                    <button type="button" class="order_button btn btn-primary btn-order " (click)="addToCart(productDetail);">Add to
+                    <button type="button" class="order_button btn btn-primary btn-order d-inline-block col-6" (click)="addToCart(productDetail);">Add to
                         Order</button>
                 </div>
             </div>

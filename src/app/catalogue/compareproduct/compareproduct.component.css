@@ -56,11 +56,11 @@
         padding-left: 0%;
     }
     .order_quantity{
-        width: 183%;
+        width: 100%;
     }
     .order_button{
         margin-top: 4%;
-        width: 84%;
+        min-width: 94%;
     }
 }
 @media (max-width: 576px) {

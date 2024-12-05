@@ -489,7 +489,7 @@ export class DashboardComponent implements OnInit {
               this.localStorageService.setItem('productCount' , res.data.count);
               this.localStorageService.setItem('vinProductCount' , res.data.count);
             }          
-            if (res.data.count === 0) {
+            if (res.data.count === 0 && queryParam !=='') {
               this.modalService.dismissAll();
               this.modalService.open(this.searchProductNotFound);
 

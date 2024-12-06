@@ -474,7 +474,7 @@
                       <div>{{part?.vehicles[0]?.model?.name}} {{part?.vehicles[0]?.year_range}}</div>
                       <div *ngIf="part.vehicles.length > 1">...</div>
                   </td> -->
-                <td>{{ part.fitting_position }}</td>
+                <td>{{ part.attributes[0]?.value }}</td>
                 <td *ngIf="isPriceVisible == true">
                   <div>
                     <div class="font-weight-bold">

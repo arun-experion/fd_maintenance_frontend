@@ -34,6 +34,7 @@ export class CompareproductComponent implements OnInit {
   cssclass = '';
   isPriceVisible = true;
   selectedImageSrc: string|null = null;
+  uniqueCriteria: string[] = [];
 
   private cartAPI = CARTAPI;
   isLow: boolean;
@@ -51,10 +52,23 @@ export class CompareproductComponent implements OnInit {
   ngOnInit() {
     this.getAllProduct();
     this.showPrice.setPriceChangeDisabled(false);
+    this.uniqueCriteria = this.getUniqueCriteria();
 
     this.showPrice.isPriceVisible.subscribe(res => {
       this.isPriceVisible = res;
     });
+  }
+
+  getUniqueCriteria() {
+    const criteriaSet = new Set<string>();
+
+    this.compareProductList.forEach(product => {
+      product.attributes.forEach(attr => {
+        criteriaSet.add(attr.criteria);
+      });
+    });
+
+    return Array.from(criteriaSet);
   }
 
   getAllProduct() {

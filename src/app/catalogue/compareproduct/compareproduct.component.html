@@ -69,53 +69,12 @@
                     <div class="col-sm-6 font-weight-bold" *ngIf="isPriceVisible === true">
                         ${{productDetail.price_retail}}
                     </div>
-                    <div class="col-sm-6">
-                        Fiting Position
-                    </div>
-                    <div class="col-sm-6">
-                        {{productDetail.fitting_position}}
-                    </div>
-
-                    <div class="col-sm-6">
-                        Brake System
-                    </div>
-                    <div class="col-sm-6">
-                        <!-- {{productDetail.brake_system}} -->
-                        {{ productDetail.brake_system ? productDetail.brake_system : productDetail.description }}
-                    </div>
-                    <div class="col-sm-6">
-                        Length
-                    </div>
-                    <div class="col-sm-6">
-                        {{productDetail.length}}
-                    </div>
-                    <div class="col-sm-6">
-                        Height
-                    </div>
-                    <div class="col-sm-6">
-                        {{productDetail.height}}
-                    </div>
-                    <div class="col-sm-6">
-                        Thickness
-                    </div>
-                    <div class="col-sm-6">
-                        {{productDetail.thickness}}
-                    </div>
-                    <div class="col-sm-6">
-                        Weight (G)
-                    </div>
-                    <div class="col-sm-6">
-                        {{productDetail.weight}}
+                    <div *ngFor="let attribute of productDetail.attributes" class="col-12 d-flex p-0">
+                        <div class="col-sm-6 col-6 ">{{ attribute.criteria }}</div>
+                        <div class="col-sm-6 col-6 font-weight-bold ">{{ attribute.value }}</div>
                     </div>
                 </div>
-				<div class="row d-flex flex-row" *ngFor="let criteria of productDetail.criteria">
-					<div class="col-sm-6">
-						{{criteria.criteria_name}}
-					</div>
-					<div class="col-sm-6">
-						{{criteria.criteria_value}}
-					</div>
-				</div>
+				
                 <div class="mt-4 d-lg-flex flex-lg-row">
                     <div class="quantity-block d-inline-block pl-0 col-6">
                         <div class="order_quantity input-group m-0">
@@ -189,42 +148,17 @@
                             ${{ product?.price_retail }}
                           </td>
                     </tr>
-                    <tr>
-                        <th nowrap>Fiting Position</th>
+                    <tr *ngFor="let criteria of uniqueCriteria">
+                        <th nowrap>{{ criteria }}</th>
                         <td *ngFor="let product of compareProductList">
-                            {{ product?.fitting_position }}
-                          </td>
-                    </tr>
-                    <tr>
-                        <th nowrap>Brake System</th>
-                        <td *ngFor="let product of compareProductList">
-                            {{ product?.brake_system ? product.brake_system : product?.description }}
-                          </td>
-                    </tr>
-                    <tr>
-                        <th nowrap>Length</th>
-                        <td *ngFor="let product of compareProductList">
-                            {{ product?.length }}
-                          </td>
-                    </tr>
-                    <tr>
-                        <th nowrap>Height</th>
-                        <td *ngFor="let product of compareProductList">
-                            {{ product?.height }}
-                          </td>
-                    </tr>
-                    <tr>
-                        <th nowrap>Thickness</th>
-                        <td *ngFor="let product of compareProductList">
-                            {{ product?.thickness }}
-                          </td>
-                    </tr>
-                    <tr>
-                        <th nowrap>Weight (G)</th>
-                        <td *ngFor="let product of compareProductList">
-                            {{ product?.weight }}
-                          </td>
-                    </tr>
+                          <!-- Loop through each product's attributes and find the matching criteria -->
+                          <ng-container *ngFor="let attr of product.attributes">
+                            <ng-container *ngIf="attr.criteria === criteria">
+                              {{ attr.value || 'null' }}
+                            </ng-container>
+                        </ng-container>
+                        </td>
+                      </tr>
 					<tr *ngFor="let criteria of compareProductList[0]?.criteria">
                         <th nowrap>{{ criteria.criteria_name }}</th>
                         <td *ngFor="let product of compareProductList">

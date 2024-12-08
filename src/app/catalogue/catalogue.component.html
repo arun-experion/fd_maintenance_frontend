@@ -474,8 +474,14 @@
                       <div>{{part?.vehicles[0]?.model?.name}} {{part?.vehicles[0]?.year_range}}</div>
                       <div *ngIf="part.vehicles.length > 1">...</div>
                   </td> -->
-                <td>{{ part.attributes[0]?.value }}</td>
-                <td *ngIf="isPriceVisible == true">
+                  <td>
+                    <ng-container *ngFor="let attr of part.attributes">
+                      <ng-container *ngIf="attr.criteria === 'Fitting Position'">
+                        {{ attr.value || 'null' }}
+                      </ng-container>
+                    </ng-container>
+                  </td>
+                  <td *ngIf="isPriceVisible == true">
                   <div>
                     <div class="font-weight-bold">
                       Nett:

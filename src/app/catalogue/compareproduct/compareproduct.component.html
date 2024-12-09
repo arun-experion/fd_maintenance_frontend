@@ -151,7 +151,6 @@
                     <tr *ngFor="let criteria of uniqueCriteria">
                         <th nowrap>{{ criteria }}</th>
                         <td *ngFor="let product of compareProductList">
-                          <!-- Loop through each product's attributes and find the matching criteria -->
                           <ng-container *ngFor="let attr of product.attributes">
                             <ng-container *ngIf="attr.criteria === criteria">
                               {{ attr.value || 'null' }}

@@ -240,13 +240,14 @@ export class CatalogueComponent implements OnInit {
   }
 
   getProductDetail() {
+    if (this.ProductId !== undefined){
     return this.Productlist.getProductDetail(this.ProductId)
       .subscribe((response: { success: any, data: any }) => {
         this.productDetail = response.data;    
         this.productDetail.quantity = 1;
         this.productDetail.addToCart = 0;
       });
-
+    }
   }
 
   getCart() {

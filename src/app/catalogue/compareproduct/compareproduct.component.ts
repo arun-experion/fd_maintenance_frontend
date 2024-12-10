@@ -63,6 +63,7 @@ export class CompareproductComponent implements OnInit {
 
   getUniqueValues(type: 'criteria' | 'criteria_name') {
     const criteriaSet = new Set<string>();
+
     this.compareProductList.forEach(product => {
       if (type === 'criteria') {
         product.attributes.forEach(attr => {
@@ -74,6 +75,7 @@ export class CompareproductComponent implements OnInit {
         });
       }
     });
+    
     return Array.from(criteriaSet);
   }
 

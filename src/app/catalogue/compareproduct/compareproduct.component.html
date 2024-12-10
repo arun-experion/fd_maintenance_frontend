@@ -74,7 +74,14 @@
                         <div class="col-sm-6 col-6 font-weight-bold ">{{ attribute.value }}</div>
                     </div>
                 </div>
-				
+				<div class="row d-flex flex-row" *ngFor="let criteria of productDetail.criteria">
+					<div class="col-sm-6">
+						{{criteria.criteria_name}}
+					</div>
+					<div class="col-sm-6">
+						{{criteria.criteria_value}}
+					</div>
+				</div>
                 <div class="mt-4 d-lg-flex flex-lg-row">
                     <div class="quantity-block d-inline-block pl-0 col-6">
                         <div class="order_quantity input-group m-0">

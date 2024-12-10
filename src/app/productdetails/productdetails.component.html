@@ -40,8 +40,8 @@
               <div [ngClass]="{'d-md-block d-none d-lg-none': true, 'low-opacity': isLow}"  #divZoomed2 class="img-zoom-result"></div>             
               <div class="row mt-2 d-flex flex-row">
                 <div *ngFor="let attribute of productDetail.attributes" class="col-12 d-flex p-0">
-                    <div class="col-sm-6 col-6">{{ attribute.criteria }}</div>
-                    <div class="col-sm-6 col-6">{{ attribute.value }}</div>
+                    <div class="col-sm-6 col-6 text-break">{{ attribute.criteria }}</div>
+                    <div class="col-sm-6 col-6 text-break">{{ attribute.value }}</div>
                 </div>
               </div>
               <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="font-weight-bold text-primary mt-2 " >             
@@ -77,8 +77,8 @@
             </div>
             <div class="row mt-2 d-flex flex-row">
                 <div *ngFor="let attribute of productDetail.attributes" class="col-12 d-flex p-0">
-                    <div class="col-sm-6 col-6">{{ attribute.criteria }}</div>
-                    <div class="col-sm-6 col-6">{{ attribute.value }}</div>
+                    <div class="col-sm-6 col-6 text-break">{{ attribute.criteria }}</div>
+                    <div class="col-sm-6 col-6 text-break">{{ attribute.value }}</div>
                 </div>
             </div>
             <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="font-weight-bold text-primary mt-2 " >             

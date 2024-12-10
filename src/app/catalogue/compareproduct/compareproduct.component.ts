@@ -75,7 +75,7 @@ export class CompareproductComponent implements OnInit {
         });
       }
     });
-    
+
     return Array.from(criteriaSet);
   }
 

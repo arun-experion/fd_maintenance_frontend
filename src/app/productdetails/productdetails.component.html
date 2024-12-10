@@ -39,18 +39,10 @@
             <div class="additional-information d-none d-sm-block">
               <div [ngClass]="{'d-md-block d-none d-lg-none': true, 'low-opacity': isLow}"  #divZoomed2 class="img-zoom-result"></div>             
               <div class="row mt-2 d-flex flex-row">
-                <div class="col-sm-6 col-6">Fitting Position</div>
-                <div class="col-sm-6 col-6">{{productDetail.fitting_position}}</div>
-                <div class="col-sm-6 col-6">Brake System</div>
-                <div class="col-sm-6 col-6">{{productDetail.brake_system ? productDetail.brake_system : productDetail.description}}</div>
-                <div class="col-sm-6 col-6">Length</div>
-                <div class="col-sm-6 col-6">{{productDetail.length}}</div>
-                <div class="col-sm-6 col-6">Height</div>
-                <div class="col-sm-6 col-6">{{productDetail.height}}</div>
-                <div class="col-sm-6 col-6">Thickness</div>
-                <div class="col-sm-6 col-6">{{productDetail.thickness}}</div>
-                <div class="col-sm-6 col-6">Weight (G)</div>
-                <div class="col-sm-6 col-6">{{productDetail.weight}}</div>
+                <div *ngFor="let attribute of productDetail.attributes" class="col-12 d-flex p-0">
+                    <div class="col-sm-6 col-6">{{ attribute.criteria }}</div>
+                    <div class="col-sm-6 col-6">{{ attribute.value }}</div>
+                </div>
               </div>
               <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="font-weight-bold text-primary mt-2 " >             
                  <p class="associated_parts_link" (click)="scrollToAssociatedParts()" style="cursor: pointer;"> Associated Parts</p>
@@ -84,18 +76,10 @@
               </div>
             </div>
             <div class="row mt-2 d-flex flex-row">
-              <div class="col-sm-6 col-6">Fitting Position</div>
-              <div class="col-sm-6 col-6">{{productDetail.fitting_position}}</div>
-              <div class="col-sm-6 col-6">Brake System</div>
-              <div class="col-sm-6 col-6">{{productDetail.brake_system ? productDetail.brake_system : productDetail.description}}</div>
-              <div class="col-sm-6 col-6">Length</div>
-              <div class="col-sm-6 col-6">{{productDetail.length}}</div>
-              <div class="col-sm-6 col-6">Height</div>
-              <div class="col-sm-6 col-6">{{productDetail.height}}</div>
-              <div class="col-sm-6 col-6">Thickness</div>
-              <div class="col-sm-6 col-6">{{productDetail.thickness}}</div>
-              <div class="col-sm-6 col-6">Weight (G)</div>
-              <div class="col-sm-6 col-6">{{productDetail.weight}}</div>
+                <div *ngFor="let attribute of productDetail.attributes" class="col-12 d-flex p-0">
+                    <div class="col-sm-6 col-6">{{ attribute.criteria }}</div>
+                    <div class="col-sm-6 col-6">{{ attribute.value }}</div>
+                </div>
             </div>
             <div *ngIf="productDetail && productDetail.associated_parts && productDetail.associated_parts.length != 0" class="font-weight-bold text-primary mt-2 " >             
               <p class="associated_parts_link" (click)="scrollToAssociatedParts()" style="cursor: pointer;"> Associated Parts</p>

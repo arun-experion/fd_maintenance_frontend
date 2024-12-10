@@ -147,12 +147,14 @@ margin: 0px;
   }
 @media (min-width: 1400px) and (max-width:2500px){
     .additional-information{
-         width: 210px;
+        min-height: 363px;
+        width: 210px;
         border: 1px solid  #dedede;
         border-top: none;
         margin-top: -6px;
         padding-left: 10px;
-        padding-bottom: 170px;
+        padding-bottom: 50px;
+        margin-bottom: 20px;
     }
     .carousel-inner{
         height: 300px;

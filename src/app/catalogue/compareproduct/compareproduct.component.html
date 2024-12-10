@@ -165,12 +165,16 @@
                         </ng-container>
                         </td>
                       </tr>
-					<tr *ngFor="let criteria of compareProductList[0]?.criteria">
-                        <th nowrap>{{ criteria.criteria_name }}</th>
-                        <td *ngFor="let product of compareProductList">
-                          {{ product.criteria_value }}
-                        </td>
-                      </tr>
+                      <tr *ngFor="let criterianotes of uniqueCriteriaNotes">
+                         <th nowrap>{{criterianotes}}</th>
+                         <td *ngFor="let product of compareProductList">
+                            <ng-container *ngFor="let criteria of product.criteria">
+                                <ng-container *ngIf="criteria.criteria_value && criteria.criteria_name === criterianotes">
+                                   {{criteria.criteria_value|| ''}}
+                                </ng-container>
+                            </ng-container>
+                         </td>
+                      </tr>   
                     <tr>
                         <td>&nbsp;</td>
                         <td *ngFor="let product of compareProductList">
